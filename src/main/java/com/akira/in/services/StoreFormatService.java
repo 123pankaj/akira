@@ -1,4 +1,4 @@
-package com.akira.in.service;
+package com.akira.in.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +15,9 @@ public class StoreFormatService {
 	public void analysisFormat(String format, String testStr) {
 
 		System.out.println("Format given to us is " + format);
+		format= format.trim();
+		String token = format.replaceAll(".*/([^/]+)/.*", "$1");
+		System.out.println(token); // prints "bus-stops"
 		Map<String, String> filter = new HashMap<String, String>();
 		List<String> nameList = new ArrayList<String>();
 		

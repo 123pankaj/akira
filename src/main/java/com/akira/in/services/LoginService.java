@@ -1,4 +1,4 @@
-package com.akira.in.service;
+package com.akira.in.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

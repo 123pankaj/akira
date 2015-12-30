@@ -7,8 +7,19 @@
 <meta charset="utf-8">
 <title>Akira</title>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/menu.css" />
 </head>
 <body>
+<div id="sse2">
+  <div id="sses2">
+    <ul>
+      <li><a href="?menu=2&skin=2&p=Javascript-Menus">Javascript Menus</a></li>
+      <li><a href="?menu=2&skin=2&p=Horizontal-Menus">Horizontal Menus</a></li>
+      <li><a href="?menu=2&skin=2&p=Web-Menus">Web Menus</a></li>
+    </ul>
+  </div>
+</div>
+
 <div class="container">
 <section id="content">
 	<form action="/store" method="post">
