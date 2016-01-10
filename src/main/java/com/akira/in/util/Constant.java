@@ -30,9 +30,11 @@ public class Constant {
 		apacheDefaultSettings.put("%v","ServerName");
 		apacheDefaultSettings.put("%V","ServerNameCanonical");
 		apacheDefaultSettings.put("%X","ConnectionStatus");
+		apacheDefaultSettings.put("%O","BytesSent");
+		apacheDefaultSettings.put("%I","BytesReceived");
 		
 	}
 	public static final String percentage = "%";
-	
+	public static final String AUI_FORMAT="%{%d-%m-%y:%H:%M:%S}t %v:%p %h %m %U%q %>s %O %D %P \"%{Referer}i\" \"%{User-Agent}i\"";
 
 }

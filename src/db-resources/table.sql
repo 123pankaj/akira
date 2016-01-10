@@ -9,7 +9,7 @@ USE akira;
 -- -------------------------------------------------
 -- language -> Language name with Id
 -- --------------------------------------------------
-CREATE TABLE userLogin (uid INT UNSIGNED NOT NULL, uname VARCHAR(20) NOT NULL, email VARCHAR(50) NOT NULL , isAdmin CHAR(1) ,PRIMARY KEY  (uid));
+CREATE TABLE userLogin (uid INT UNSIGNED NOT NULL, uname VARCHAR(20) NOT NULL,password VARCHAR(20) NOT NULL, email VARCHAR(50) NOT NULL , isAdmin CHAR(1) ,PRIMARY KEY  (uid));
 
 CREATE TABLE apacheFormat (afid INT UNSIGNED NOT NULL, logFormat VARCHAR(100) NOT NULL, PRIMARY KEY  (afid) );
 

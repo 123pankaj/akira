@@ -31,9 +31,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.akira.in.controller",
-		"com.akira.in.services", "com.akira.in.model"
+		"com.akira.in.services", "com.akira.in.model","com.akira.in.repository"
 		 })
-@EnableJpaRepositories("com.akira.in.repositories")
+@EnableJpaRepositories("com.akira.in.repository")
 @EnableTransactionManagement
 public class AkiraConfiguration extends WebMvcConfigurerAdapter implements
 TransactionManagementConfigurer{

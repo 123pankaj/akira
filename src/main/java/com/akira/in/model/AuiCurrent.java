@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 @Entity
 @Table(name = "AUI_CURRENT", catalog = "akira")
 public class AuiCurrent {
@@ -36,74 +38,78 @@ public class AuiCurrent {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "time", nullable = false, length = 0)
 	public Date getTime() {
 		return time;
 	}
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	@Column(name = "logFormat", unique = true, nullable = false, length = 100)
+	@Column(name = "Endpoint", unique = true, nullable = false, length = 100)
 	public String getEndpoint() {
 		return endpoint;
 	}
 	public void setEndpoint(String endpoint) {
 		this.endpoint = endpoint;
 	}
-	@Column(name = "logFormat", unique = true, nullable = false, length = 100)
+	@Column(name = "RemoteHostName", unique = true, nullable = false, length = 100)
 	public String getRemoteHostName() {
 		return remoteHostName;
 	}
 	public void setRemoteHostName(String remoteHostName) {
 		this.remoteHostName = remoteHostName;
 	}
-	@Column(name = "logFormat", unique = true, nullable = false, length = 100)
+	@Column(name = "RequestMethod", unique = true, nullable = false, length = 100)
 	public String getRequestMethod() {
 		return requestMethod;
 	}
 	public void setRequestMethod(String requestMethod) {
 		this.requestMethod = requestMethod;
 	}
-	@Column(name = "logFormat", unique = true, nullable = false, length = 100)
+	@Column(name = "URLRequested", unique = true, nullable = false, length = 100)
 	public String getUrlRequested() {
 		return urlRequested;
 	}
 	public void setUrlRequested(String urlRequested) {
 		this.urlRequested = urlRequested;
 	}
-	@Column(name = "logFormat", unique = true, nullable = false, length = 100)
+	@Column(name = "statusCode", unique = true, nullable = false, length = 100)
 	public String getStatusCode() {
 		return statusCode;
 	}
 	public void setStatusCode(String statusCode) {
 		this.statusCode = statusCode;
 	}
-	@Column(name = "logFormat", unique = true, nullable = false, length = 100)
+	@Column(name = "byteSent", unique = true, nullable = false, length = 100)
 	public String getByteSent() {
 		return byteSent;
 	}
 	public void setByteSent(String byteSent) {
 		this.byteSent = byteSent;
 	}
-	@Column(name = "logFormat", unique = true, nullable = false)
+	@Column(name = "TimeInMicro", unique = true, nullable = false)
 	public Integer getTimeInMicro() {
 		return timeInMicro;
 	}
 	public void setTimeInMicro(Integer timeInMicro) {
 		this.timeInMicro = timeInMicro;
 	}
+	@Column(name = "ProcessId", unique = true, nullable = false)
 	public String getProcessId() {
 		return processId;
 	}
 	public void setProcessId(String processId) {
 		this.processId = processId;
 	}
+	@Column(name = "ReferHead", unique = true, nullable = false)
 	public String getReferHead() {
 		return ReferHead;
 	}
 	public void setReferHead(String referHead) {
 		ReferHead = referHead;
 	}
+	@Column(name = "userAgent", unique = true, nullable = false)
 	public String getUserAgent() {
 		return userAgent;
 	}

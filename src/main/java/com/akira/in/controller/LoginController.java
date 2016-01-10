@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.akira.in.services.LoginService;
 import com.akira.in.services.StoreFormatService;
 
 @Controller
@@ -16,18 +17,24 @@ public class LoginController {
 
 	@Resource
 	StoreFormatService formatStoreService;
+	
+	@Resource
+	LoginService loginservice;
 
-	@RequestMapping(value = { "" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "login" }, method = RequestMethod.GET)
 	public ModelAndView getLoginPage() {
 		String message = "";
 		return new ModelAndView("login", "message", message);
 	}
 
-	@RequestMapping(value = { "login" }, method = RequestMethod.POST)
-	public ModelAndView getUserLogin() {
-		String message = "User";
-
-		return new ModelAndView("home", "message", message);
+	@RequestMapping(value = { "home" }, method = RequestMethod.POST)
+	public ModelAndView getUserLogin(@RequestParam("username") String username,@RequestParam("password") String password) {
+		String message;
+		if(!loginservice.loginAllowed(username, password)){
+			message= "Credential are not Correct.";
+			return new ModelAndView("login", "message", message);
+		}
+		return new ModelAndView("home");
 	}
 
 	@RequestMapping(value = { "store" }, method = RequestMethod.POST)

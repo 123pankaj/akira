@@ -18,6 +18,7 @@ public class User implements java.io.Serializable {
 
 	private Integer uid;
 	private String uname;
+	private String password;
 	private String email;
 	private Boolean isAdmin;
 	
@@ -37,6 +38,15 @@ public class User implements java.io.Serializable {
 	
 	public void setUname(String uname) {
 		this.uname = uname;
+	}
+	
+	@Column(name = "password", nullable = false, length = 20)
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	@Column(name = "email", nullable = false, length = 50)
 	public String getEmail() {
