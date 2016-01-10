@@ -6,21 +6,43 @@
 <head>
 <meta charset="utf-8">
 <title>Akira</title>
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet" type="text/css" href="css/menu.css" />
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"> </script> 
+<script type="text/javascript" src="js/bootstrap.min.js"> </script> 
 </head>
 <body>
-<div id="sse2">
-  <div id="sses2">
-    <ul>
-      <li><a href="?menu=2&skin=2&p=Javascript-Menus">Javascript Menus</a></li>
-      <li><a href="?menu=2&skin=2&p=Horizontal-Menus">Horizontal Menus</a></li>
-      <li><a href="?menu=2&skin=2&p=Web-Menus">Web Menus</a></li>
-    </ul>
-  </div>
-</div>
 
-<div class="container">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+   <!--  <div class="navbar-header">
+      
+      <a class="navbar-brand" href="#">Home</a>
+    </div> -->
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Test <span class="sr-only">(current)</span></a></li>
+       
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">AUI</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">More to come</a></li>
+          </ul>
+        </li>
+         <li><a href="#">Logout</a></li>
+      </ul>
+    
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<!-- <div class="container">
 <section id="content">
 	<form action="/store" method="post">
 	<div>
@@ -32,11 +54,11 @@
 		<br/><br/>
 	</div>
 	<div>
-		<input type="submit" value="Store" />
+		<input type="submit" value="Test" />
 	</div>
 	</form>
 	</section>
 	
-</div>
+</div> -->
 </body>
 </html>
