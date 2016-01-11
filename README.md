@@ -1,4 +1,4 @@
-# akira
+# Akira
 Log Reader<br>
 It Take Apache format as String and then shows the log in proper format.<br>
 Only condition is if you have any thing inside '{' and '}' please use '"'.<br>
