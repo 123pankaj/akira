@@ -9,18 +9,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.akira.in.services.LoginService;
-import com.akira.in.services.StoreFormatService;
 
 @Controller
 @RequestMapping("/")
 public class LoginController {
 
-	@Resource
-	StoreFormatService formatStoreService;
+	
 	
 	@Resource
 	LoginService loginservice;
 
+	@RequestMapping(value = { "" }, method = RequestMethod.GET)
+	public String redirectToLoginPage() {
+		return "redirect:/login";
+	}
+	
 	@RequestMapping(value = { "login" }, method = RequestMethod.GET)
 	public ModelAndView getLoginPage() {
 		String message = "";
@@ -37,12 +40,5 @@ public class LoginController {
 		return new ModelAndView("home");
 	}
 
-	@RequestMapping(value = { "store" }, method = RequestMethod.POST)
-	public ModelAndView getLogFormat(
-			@RequestParam(value = "logFormat") String format,
-			@RequestParam(value = "testStr") String testStr) {
-		String message = "";
-		formatStoreService.analysisFormat(format,testStr);
-		return new ModelAndView("result", "message", message);
-	}
+	
 }

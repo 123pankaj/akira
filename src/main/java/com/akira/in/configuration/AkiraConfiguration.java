@@ -8,14 +8,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -35,8 +34,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		 })
 @EnableJpaRepositories("com.akira.in.repository")
 @EnableTransactionManagement
-public class AkiraConfiguration extends WebMvcConfigurerAdapter implements
-TransactionManagementConfigurer{
+public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public ViewResolver viewResolver() {
@@ -90,7 +88,8 @@ TransactionManagementConfigurer{
 		LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
 		lef.setDataSource(dataSource);
 		lef.setJpaVendorAdapter(jpaVendorAdapter);
-		lef.setPackagesToScan("com.akira.in.model");
+		lef.setPackagesToScan(new String[] {"com.akira.in.model"});
+		lef.setPersistenceUnitName("akira");
 		return lef;
 	}
 
@@ -115,12 +114,15 @@ TransactionManagementConfigurer{
 
 	@Bean
 	public PlatformTransactionManager txManager() {
-		return new DataSourceTransactionManager(getDataSource());
+		JpaTransactionManager tm = 
+	            new JpaTransactionManager();
+	            tm.setEntityManagerFactory(entityManagerFactory(getDataSource(), jpaVendorAdapter()).getObject());
+	            tm.setDataSource(getDataSource());
+	        return tm;
 	}
 
-	@Override
+/*	@Override
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
 		return txManager();
-	}
-
+	}*/
 }
