@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="ie6 ielt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]-->
@@ -76,7 +78,35 @@ var ids = ["verify", "component", "logout"];
 <!-- Test the Format to check the functionality -->
  <div id="component" style="display: none;">
 	<div>
-		<h1>Component Detail </h1>
+		<table border="1">
+  		<tr>
+   		 	<th>Time</th>
+   		 	<th>EndpointIp</th>
+   		 	<th>RemoteIp</th>
+   		 	<th>RequestMethod</th>
+   		 	<th>URLRequested</th>
+   		 	<th>StatusCode</th>
+   		 	<th>ByteSent</th>
+   		 	<th>ResponseTime</th>
+   		 	<th>ProcessId</th>
+   		 	<th>ReferHead</th>
+   		 	<th>UserAgent</th>
+  		</tr>
+  		<c:forEach items="${LogArray}" var="item">
+  		<tr>
+    		<th align="center">${item.time}</th>
+    		<th align="center">${item.endpoint}</th>
+    		<th align="center">${item.remoteHostName}</th>
+    		<th align="center">${item.requestMethod}</th>
+    		<th align="center">${item.urlRequested}</th>
+    		<th align="center">${item.statusCode}</th>
+    		<th align="center">${item.byteSent}</th>
+    		<th align="center">${item.timeInMicro}</th>
+    		<th align="center">${item.processId}</th>
+    		<th align="center">${item.referHead}</th>
+    		<th align="center">${item.userAgent}</th>
+    	</tr>
+	</c:forEach>
 	</div>
 </div>
 

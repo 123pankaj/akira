@@ -121,8 +121,4 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 	        return tm;
 	}
 
-/*	@Override
-	public PlatformTransactionManager annotationDrivenTransactionManager() {
-		return txManager();
-	}*/
 }

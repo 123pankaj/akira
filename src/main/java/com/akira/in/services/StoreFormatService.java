@@ -97,6 +97,14 @@ public class StoreFormatService {
 		}
 		return resultMap;
 	}
+	
+	public List<AuiCurrent> getAUILog(){
+		
+		List<AuiCurrent> list=auiRepo.findAll();
+		System.out.println("****Total Number of list are *** "+ list.size());
+		return list;
+	}
+	
 	private Map<String, String> getFilterMap(String format,
 			List<String> nameList) {
 		Pattern fieldNamePattern = Pattern.compile(Constant.PattrenForFields);
