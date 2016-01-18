@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.akira.in.model.AuiCurrent;
@@ -98,9 +99,9 @@ public class StoreFormatService {
 		return resultMap;
 	}
 	
-	public List<AuiCurrent> getAUILog(){
-		
-		List<AuiCurrent> list=auiRepo.findAll();
+	public List<AuiCurrent> getAUILog(int pagenumber){
+		PageRequest pageRequest=new PageRequest(pagenumber, 3);
+		List<AuiCurrent> list=auiRepo.findAll(pageRequest).getContent();
 		System.out.println("****Total Number of list are *** "+ list.size());
 		return list;
 	}

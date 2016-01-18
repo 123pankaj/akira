@@ -14,17 +14,68 @@
 <script>
 
 var ids = ["verify", "component", "logout"];
-    //Functon to show divs from the nav menu
+var data_file="http://localhost:11011/logs/AUI/get?PageNumber=";
+var currentpage=0;   
+var xhttp = new XMLHttpRequest();
+
+//Functon to show divs from the nav menu
     function show_div(toShow)
     {
     	for	(index = 0; index < ids.length; index++) {
     		var show = document.getElementById(ids[index]);
-    	    if(toShow==ids[index])
+    	    if(toShow==ids[index]){
     	    	show.style.display = "";
+    	    	if(toShow=="component")
+    	    		loadPage();
+    	    }
     	    else
     	    	show.style.display = "none";
     	}
     }
+
+    xhttp.onreadystatechange = function() {
+	    if (xhttp.readyState == 4) {
+	     var jsonlist=JSON.parse(xhttp.responseText);
+	     var i;
+	     var table=document.getElementById("logs");
+	     
+	  for(i=table.rows.length-1;i>=1;i--)
+	  table.deleteRow(i);
+	   
+	     for(i=0;i<jsonlist.length;i++){
+	        var row = table.insertRow(i+1);
+	    	row.insertCell(0).innerHTML=jsonlist[i].id;
+	    	row.insertCell(1).innerHTML=jsonlist[i].endpoint;
+	    	row.insertCell(2).innerHTML=jsonlist[i].remoteHostName;
+	    	row.insertCell(3).innerHTML=jsonlist[i].requestMethod;
+	    	row.insertCell(4).innerHTML=jsonlist[i].urlRequested;
+	    	row.insertCell(5).innerHTML=jsonlist[i].statusCode;
+	    	row.insertCell(6).innerHTML=jsonlist[i].byteSent;
+	    	row.insertCell(7).innerHTML=jsonlist[i].timeInMicro;
+	    	row.insertCell(8).innerHTML=jsonlist[i].processId;
+	    	row.insertCell(9).innerHTML=jsonlist[i].referHead;
+	    	row.insertCell(10).innerHTML=jsonlist[i].userAgent;
+	     }
+	    }
+	  };
+    function loadPage(){ 
+    	  xhttp.open("GET", data_file+currentpage, true);
+    	  xhttp.send();
+    	  }
+
+    	     	    
+    	  // loadPage();
+    	   
+    	   function loadnext(){
+    		currentpage++;
+    		loadPage();  
+    	   }
+    	   
+ function loadprev(){
+	 currentpage--;
+		loadPage();   
+    	   }
+ 
 </script> 
 </head>
 
@@ -78,7 +129,7 @@ var ids = ["verify", "component", "logout"];
 <!-- Test the Format to check the functionality -->
  <div id="component" style="display: none;">
 	<div>
-		<table border="1">
+		<table border="1" id="logs">
   		<tr>
    		 	<th>Time</th>
    		 	<th>EndpointIp</th>
@@ -92,7 +143,7 @@ var ids = ["verify", "component", "logout"];
    		 	<th>ReferHead</th>
    		 	<th>UserAgent</th>
   		</tr>
-  		<c:forEach items="${LogArray}" var="item">
+  		<%-- <c:forEach items="${LogArray}" var="item">
   		<tr>
     		<th align="center">${item.time}</th>
     		<th align="center">${item.endpoint}</th>
@@ -106,8 +157,15 @@ var ids = ["verify", "component", "logout"];
     		<th align="center">${item.referHead}</th>
     		<th align="center">${item.userAgent}</th>
     	</tr>
-	</c:forEach>
+	</c:forEach> --%>
+	</table>
 	</div>
+	
+	<div style="width:50%;margin-left:auto;margin-right:auto;">
+	<button style="float:left" onclick="loadprev()">Previous</button>
+	<button style="float:right" onclick="loadnext()">Next</button>
+	</div>
+	
 </div>
 
 <!-- Test the Format to check the functionality -->
