@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.akira.in.repository.ProcessFormats;
 import com.akira.in.services.StoreFormatService;
 
 
@@ -18,13 +19,13 @@ import com.akira.in.services.StoreFormatService;
 public class HomeController {
 
 	@Resource
-	StoreFormatService formatStoreService;
+	ProcessFormats formatService;
 	
 	@RequestMapping(value = { "verify" }, method = RequestMethod.POST)
 	public ModelAndView getLogFormat(
 			@RequestParam(value = "logFormat") String format,
 			@RequestParam(value = "testStr") String testStr) {
-		Map<String,String> map = formatStoreService.verifyFormat(format,testStr);
+		Map<String,String> map = formatService.verifyFormat(format,testStr);
 		return new ModelAndView("result", "map", map);
 	}
 }

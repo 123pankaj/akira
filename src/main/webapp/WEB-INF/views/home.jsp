@@ -14,7 +14,7 @@
 <script>
 
 var ids = ["verify", "component", "logout"];
-var data_file="http://localhost:11011/logs/AUI/get?PageNumber=";
+var data_file="http://"+ location.host+"/logs/AUI/get?PageNumber=";
 var currentpage=0;   
 var xhttp = new XMLHttpRequest();
 

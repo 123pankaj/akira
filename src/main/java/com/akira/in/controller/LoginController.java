@@ -45,8 +45,7 @@ public class LoginController {
 			responsemap.put("message", message);
 			return new ModelAndView("login", responsemap);
 		}
-		responsemap.put("LogArray", sfService.getAUILog(0));
-		return new ModelAndView("home",responsemap);
+		return new ModelAndView("home");
 	}
 
 }
