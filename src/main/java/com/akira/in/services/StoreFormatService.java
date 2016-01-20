@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.akira.in.model.AuiCurrent;
@@ -73,9 +74,12 @@ public class StoreFormatService {
 		auiRepo.saveAndFlush(auiLogModel);
 	}
 
-	public List<AuiCurrent> getAUILog(int pagenumber, int pSize) {
-		PageRequest pageRequest = new PageRequest(pagenumber, pSize);
+	public List<AuiCurrent> getAUILog(int pagenumber, int pSize, String order,String sortBy) {
+		
+		PageRequest pageRequest = new PageRequest(pagenumber, pSize,order.equals("DESC")?Sort.Direction.DESC:Sort.Direction.ASC,sortBy);
+		
 		List<AuiCurrent> list = auiRepo.findAll(pageRequest).getContent();
+		
 		return list;
 	}
 

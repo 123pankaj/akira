@@ -37,11 +37,13 @@ public class PostLogsController {
 
 	@RequestMapping(value = { "AUI/get" }, method = RequestMethod.GET)
 	public Object getLogsData(
-			@RequestParam(value = "PageNumber", required = false, defaultValue = "0") int pNumber,
+			@RequestParam(value = "pN", required = false, defaultValue = "0") int pNumber,
 			@RequestParam(value = "pS", required = false, defaultValue = "100") int pSize,
+			@RequestParam(value = "sB", required = false, defaultValue = "id") String sortBy,
+			@RequestParam(value = "or", required = false, defaultValue = "ASC") String order ,
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
-		List<AuiCurrent> auic = formatService.getAUILog(pNumber, pSize);
+		List<AuiCurrent> auic = formatService.getAUILog(pNumber, pSize,order,sortBy);
 		return auic;
 	}
 

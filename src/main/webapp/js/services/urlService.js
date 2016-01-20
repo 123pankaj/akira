@@ -10,12 +10,10 @@ akira.service("urlService", ["$http", "$q","Constant",
             });
         };
 
-        function getAUILog(pNumber) {
-            var request = $http({
-                method: "get",
-                url: String.format(staticUrls.getAuiLogUrl, pNumber),
-                
-            });
+        function getAUILog(pNum,pSize,sOrder,sAttribute) {
+            var request = $http.get(staticUrls.getAuiLogUrl,{params:{pN:pNum,pS:pSize,sB:sAttribute,or:sOrder}});
+            
+           //console.log(request.url);
             return (request.then(handleSuccess, handleError));
         }
         
