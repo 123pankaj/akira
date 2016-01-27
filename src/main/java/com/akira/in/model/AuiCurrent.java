@@ -23,7 +23,7 @@ public class AuiCurrent {
 	private String requestMethod;
 	private String urlRequested;
 	private String statusCode;
-	private String byteSent;
+	private Integer byteSent;
 	private Integer timeInMicro;
 	private String processId;
 	private String ReferHead;
@@ -82,10 +82,10 @@ public class AuiCurrent {
 		this.statusCode = statusCode;
 	}
 	@Column(name = "byteSent", unique = true, nullable = false, length = 100)
-	public String getByteSent() {
+	public Integer getByteSent() {
 		return byteSent;
 	}
-	public void setByteSent(String byteSent) {
+	public void setByteSent(Integer byteSent) {
 		this.byteSent = byteSent;
 	}
 	@Column(name = "TimeInMicro", unique = true, nullable = false)

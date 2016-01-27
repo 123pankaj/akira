@@ -29,8 +29,6 @@ public class PostLogsController {
 		request.getHeader("content-length");
 		request.getHeader("content-disposition");
 		String requestStr = IOUtils.toString(request.getInputStream());
-		System.out.println("*************");
-		System.out.println(requestStr);
 		formatService.analysisFormat(Constant.AUI_FORMAT, requestStr);
 		return null;
 	}

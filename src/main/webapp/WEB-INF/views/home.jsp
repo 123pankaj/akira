@@ -34,7 +34,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="logCtrl">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#Verify" ng-click="showDiv('verify')">Test <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="#Verify" ng-click="showDiv('verify')">Test<span class="sr-only">(current)</span></a></li>
        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Component <span class="caret"></span></a>

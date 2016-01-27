@@ -42,14 +42,19 @@ public class StoreFormatService {
 		while (index < logLine.length) {
 			String log = logLine[index];
 			System.out.println("Analysing line : " + log);
-			processFormats.getValuesFromString(log, filter, nameList);
+			resultMap = processFormats.getValuesFromString(log, filter,
+					nameList);
+			System.out.println("------------------------------------\n"
+					+ resultMap + "\n-------------------------------------");
 			saveLogDataInModel(resultMap);
+
+			index++;
 		}
 	}
 
 	private void saveLogDataInModel(Map<String, String> resultMap) {
 		AuiCurrent auiLogModel = new AuiCurrent();
-		auiLogModel.setByteSent(resultMap.get("BytesSent"));
+		auiLogModel.setByteSent(Integer.parseInt(resultMap.get("BytesSent")));
 		auiLogModel.setEndpoint(resultMap.get("ServerName") + ":"
 				+ resultMap.get("CanonicalPort"));
 		auiLogModel.setProcessId(resultMap.get("ProcessIdChild"));
