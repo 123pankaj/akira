@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.akira.RO.Logs;
 import com.akira.in.model.AuiCurrent;
 import com.akira.in.services.StoreFormatService;
 import com.akira.in.util.Constant;
-import com.akira.returnobjects.Logs;
 
 @RestController
 @RequestMapping("/logs/")
