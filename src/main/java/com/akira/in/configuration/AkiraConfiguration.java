@@ -3,6 +3,15 @@ package com.akira.in.configuration;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.quartz.Job;
+import org.quartz.JobDataMap;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.SimpleTrigger;
+import org.quartz.Trigger;
+import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +22,9 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
@@ -24,9 +36,12 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.akira.Schedules.CronTriggerExample;
+import com.akira.Schedules.HelloJob;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
+@SuppressWarnings("unused")
+@EnableScheduling
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.akira.in.controller",
@@ -56,7 +71,7 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/akira");
 		dataSource.setUsername("root");
-		dataSource.setPassword("root123");
+		dataSource.setPassword("1234");
 		dataSource.setMaxActive(5);
 		return dataSource;
 	}
@@ -64,11 +79,11 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/")
-				.setCachePeriod(31556926);
+				.setCachePeriod(0);//31556926);
 		registry.addResourceHandler("/images/**")
 				.addResourceLocations("/images/").setCachePeriod(31556926);
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/")
-				.setCachePeriod(31556926);
+				.setCachePeriod(0);
 	}
 
 	@Bean
@@ -120,5 +135,12 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 	            tm.setDataSource(getDataSource());
 	        return tm;
 	}
+	
+	@Scheduled(cron = "0/1 * * * * ?")
+    public void ScheduledTask()
+    {
+       	System.out.println("annotation");
 
+    }
+		  
 }
