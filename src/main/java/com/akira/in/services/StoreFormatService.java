@@ -1,6 +1,9 @@
 package com.akira.in.services;
 
+
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +15,8 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.akira.in.model.AuiCurrent;
@@ -78,10 +83,43 @@ public class StoreFormatService {
 		auiRepo.saveAndFlush(auiLogModel);
 	}
 
-	public List<AuiCurrent> getAUILog(int pagenumber, int pSize) {
-		PageRequest pageRequest = new PageRequest(pagenumber, pSize);
-		List<AuiCurrent> list = auiRepo.findAll(pageRequest).getContent();
+	public List<AuiCurrent> getAUILog(String d,int pagenumber, int pSize, String order,String sortBy) {
+		
+		PageRequest pageRequest = new PageRequest(pagenumber, pSize,order.equals("DESC")?Sort.Direction.DESC:Sort.Direction.ASC,sortBy);
+		Pageable p=pageRequest;
+		List<AuiCurrent> list = new ArrayList<>();
+		try {
+			DateFormat dateformat=new SimpleDateFormat("yyyy-mm-dd HH:mm:ss.S");
+			Date dayStart=dateformat.parse(d+" 00:00:00.0");
+			Date dayEnd=dateformat.parse(d+" 23:59:59.9");
+			list.addAll(auiRepo.findByTimeBetween(dayStart,dayEnd, p).getContent());
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
 		return list;
 	}
+	
+	
+	public int getTotalPages(String d, int pSize) {
+		
+		
+		int pages=0;
+		try {
+			DateFormat dateformat=new SimpleDateFormat("yyyy-mm-dd HH:mm:ss.S");
+			Date dayStart=dateformat.parse(d+" 00:00:00.0");
+			Date dayEnd=dateformat.parse(d+" 23:59:59.9");
+			pages=(int) Math.ceil((auiRepo.findByTimeBetween(dayStart,dayEnd).size()/(float)pSize));
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return pages;
+	}
+	
+	
+	
 
 }
