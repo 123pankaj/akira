@@ -68,8 +68,8 @@ public class StoreFormatService {
 		auiLogModel.setRequestMethod(resultMap.get("RequestMethod"));
 		auiLogModel.setTimeInMicro(Integer.parseInt(resultMap
 				.get("ResponseTimeMicroSecond")));
-		auiLogModel.setUrlRequested(resultMap.get("URLPathRequested")
-				+ resultMap.get("QueryString"));
+		auiLogModel.setUrlRequested(resultMap.get("URLPathRequested"));
+		auiLogModel.setQueryString(resultMap.get("QueryString"));
 		auiLogModel.setUserAgent(resultMap.get("User-Agent"));
 		auiLogModel.setStatusCode(resultMap.get("FinalStatus"));
 		Date dateOfRequest = null;

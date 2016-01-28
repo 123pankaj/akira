@@ -22,6 +22,8 @@ public class AuiCurrent {
 	private String remoteHostName;
 	private String requestMethod;
 	private String urlRequested;
+	private String queryString;
+	
 	private String statusCode;
 	private Integer byteSent;
 	private Integer timeInMicro;
@@ -31,7 +33,7 @@ public class AuiCurrent {
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id",  nullable = false)
 	public Integer getId() {
 		return id;
 	}
@@ -46,70 +48,77 @@ public class AuiCurrent {
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	@Column(name = "Endpoint", unique = true, nullable = false, length = 100)
+	@Column(name = "Endpoint",  nullable = false, length = 100)
 	public String getEndpoint() {
 		return endpoint;
 	}
 	public void setEndpoint(String endpoint) {
 		this.endpoint = endpoint;
 	}
-	@Column(name = "RemoteHostName", unique = true, nullable = false, length = 100)
+	@Column(name = "RemoteHostName",  nullable = false, length = 100)
 	public String getRemoteHostName() {
 		return remoteHostName;
 	}
 	public void setRemoteHostName(String remoteHostName) {
 		this.remoteHostName = remoteHostName;
 	}
-	@Column(name = "RequestMethod", unique = true, nullable = false, length = 100)
+	@Column(name = "RequestMethod",  nullable = false, length = 100)
 	public String getRequestMethod() {
 		return requestMethod;
 	}
 	public void setRequestMethod(String requestMethod) {
 		this.requestMethod = requestMethod;
 	}
-	@Column(name = "URLRequested", unique = true, nullable = false, length = 100)
+	@Column(name = "URLRequested", nullable = false, length = 255)
 	public String getUrlRequested() {
 		return urlRequested;
 	}
 	public void setUrlRequested(String urlRequested) {
 		this.urlRequested = urlRequested;
 	}
-	@Column(name = "statusCode", unique = true, nullable = false, length = 100)
+	@Column(name = "QueryStr",  nullable = false, length = 255)
+	public String getQueryString() {
+		return queryString;
+	}
+	public void setQueryString(String queryString) {
+		this.queryString = queryString;
+	}
+	@Column(name = "statusCode", nullable = false, length = 100)
 	public String getStatusCode() {
 		return statusCode;
 	}
 	public void setStatusCode(String statusCode) {
 		this.statusCode = statusCode;
 	}
-	@Column(name = "byteSent", unique = true, nullable = false, length = 100)
+	@Column(name = "byteSent",  nullable = false, length = 100)
 	public Integer getByteSent() {
 		return byteSent;
 	}
 	public void setByteSent(Integer byteSent) {
 		this.byteSent = byteSent;
 	}
-	@Column(name = "TimeInMicro", unique = true, nullable = false)
+	@Column(name = "TimeInMicro",  nullable = false)
 	public Integer getTimeInMicro() {
 		return timeInMicro;
 	}
 	public void setTimeInMicro(Integer timeInMicro) {
 		this.timeInMicro = timeInMicro;
 	}
-	@Column(name = "ProcessId", unique = true, nullable = false)
+	@Column(name = "ProcessId",  nullable = false)
 	public String getProcessId() {
 		return processId;
 	}
 	public void setProcessId(String processId) {
 		this.processId = processId;
 	}
-	@Column(name = "ReferHead", unique = true, nullable = false)
+	@Column(name = "ReferHead",  nullable = false)
 	public String getReferHead() {
 		return ReferHead;
 	}
 	public void setReferHead(String referHead) {
 		ReferHead = referHead;
 	}
-	@Column(name = "userAgent", unique = true, nullable = false)
+	@Column(name = "userAgent",  nullable = false)
 	public String getUserAgent() {
 		return userAgent;
 	}
