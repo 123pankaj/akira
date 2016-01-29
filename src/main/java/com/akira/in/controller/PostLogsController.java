@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.akira.RO.Logs;
 import com.akira.in.model.AuiCurrent;
+
 import com.akira.in.services.StoreFormatService;
 import com.akira.in.util.Constant;
 
@@ -24,6 +25,8 @@ public class PostLogsController {
 	@Resource
 	StoreFormatService formatService;
 
+
+	
 	@RequestMapping(value = { "AUI/upload" }, method = RequestMethod.POST, headers = "content-type!=multipart/form-data")
 	public String saveLogsData(final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
@@ -49,6 +52,7 @@ public class PostLogsController {
 		int pageSize=formatService.getTotalPages(date, pSize);
 		Logs l=new Logs(pageSize,auic);//http://localhost:11011/logs/AUI/get?PageNumber=0&date=2016-01-22&or=ASC&pN=0&pS=100&sB=id
 		System.out.println(pageSize);
+		
 		
 		return l;
 	}

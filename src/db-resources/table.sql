@@ -17,3 +17,5 @@ CREATE TABLE apacheFormat (afid INT UNSIGNED NOT NULL, logFormat VARCHAR(100) NO
 
 CREATE TABLE AUI_CURRENT (id INT UNSIGNED NOT NULL AUTO_INCREMENT, time TIMESTAMP ,Endpoint VARCHAR(255),RemoteHostName VARCHAR(16),RequestMethod VARCHAR(10), URLRequested VARCHAR(255),QueryStr VARCHAR(255), statusCode VARCHAR(3),byteSent INT, TimeInMicro INT UNSIGNED,ProcessId VARCHAR(10), ReferHead VARCHAR(255),userAgent VARCHAR(255),
  KEY fk_id (id));	 
+ 
+CREATE TABLE akira.AUI_SUMMARY (sid INT UNSIGNED NOT NULL AUTO_INCREMENT, LogDate Date , URLRequested VARCHAR(255) ,SuccessStatusCode int,FailureStatusCode int, AverageTimeInMicro INT UNSIGNED, KEY fk_id (sid));	 

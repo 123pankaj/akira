@@ -36,8 +36,7 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.akira.Schedules.CronTriggerExample;
-import com.akira.Schedules.HelloJob;
+import com.akira.Schedules.SummarizerCronTrigger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("unused")
@@ -135,12 +134,10 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 	            tm.setDataSource(getDataSource());
 	        return tm;
 	}
+	@Bean
+public SummarizerCronTrigger generateScheduler(){
+return new SummarizerCronTrigger();
 	
-	@Scheduled(cron = "0/1 * * * * ?")
-    public void ScheduledTask()
-    {
-       	//System.out.println("annotation");
-
-    }
+}
 		  
 }
