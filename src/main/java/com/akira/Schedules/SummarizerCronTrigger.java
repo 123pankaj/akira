@@ -1,27 +1,22 @@
 package com.akira.Schedules;
 
-import javax.annotation.PostConstruct;
 
-import org.quartz.CronTrigger;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.impl.StdSchedulerFactory;
+import javax.annotation.Resource;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
+import com.akira.in.services.SummaryService;
+
+@EnableScheduling
+@Component
 public class SummarizerCronTrigger {
+	@Resource
+	SummaryService summaryservice;
 	
-	@PostConstruct
+	@Scheduled(cron="0 40 13 * * ?")
 	public void start() throws Exception {
-		JobDetail job = new JobDetail();
-		job.setName("SummarizeJob");
-		job.setJobClass(SummarizeSchedule.class);
-
-		CronTrigger trigger = new CronTrigger();
-		trigger.setName("CronSummarizeJob");
-		trigger.setCronExpression("0/1 * * * * ?");
-
-		// schedule it
-		Scheduler scheduler = new StdSchedulerFactory().getScheduler();
-		scheduler.start();
-		scheduler.scheduleJob(job, trigger);
+		System.out.println("hi");
+		summaryservice.summarizeLogs();
 	}
 }

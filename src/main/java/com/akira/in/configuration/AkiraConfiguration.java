@@ -43,9 +43,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableScheduling
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.akira.in.controller",
-		"com.akira.in.services", "com.akira.in.model","com.akira.in.repository"
-		 })
+@ComponentScan(basePackages = { "com.akira.in.controller","com.akira.in.services", "com.akira.in.model","com.akira.in.repository","com.akira.Schedules"})
 @EnableJpaRepositories("com.akira.in.repository")
 @EnableTransactionManagement
 public class AkiraConfiguration extends WebMvcConfigurerAdapter {
@@ -70,7 +68,7 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/akira");
 		dataSource.setUsername("root");
-		dataSource.setPassword("root123");
+		dataSource.setPassword("1234");
 		dataSource.setMaxActive(5);
 		return dataSource;
 	}
@@ -134,10 +132,9 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 	            tm.setDataSource(getDataSource());
 	        return tm;
 	}
-	@Bean
-public SummarizerCronTrigger generateScheduler(){
-return new SummarizerCronTrigger();
+
 	
-}
-		  
+	
+	
+	
 }

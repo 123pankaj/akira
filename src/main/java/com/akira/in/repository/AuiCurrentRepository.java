@@ -38,6 +38,19 @@ public interface AuiCurrentRepository extends JpaRepository<AuiCurrent, Integer>
 	 		+ "END ASC LIMIT ?#{[1]} OFFSET ?#{[2]}")
 	 Set<AuiCurrent>findLogsByDateAsc(String date,int limit, int offset, String order,String sortBy);
 */
+	
+	 @Query(nativeQuery = true, value ="Select distinct URLRequested from aui_current")
+	 List<String>findDistinctUrl();
+	
+	 @Query(nativeQuery = true, value ="Select Count(*) from aui_current where URLRequested = ?#{[0]} AND statusCode=200")
+	 int numberOfSuccess(String s);
+	 
+	 @Query(nativeQuery = true, value ="Select Count(*) from aui_current where URLRequested = ?#{[0]} AND statusCode<>200")
+	 int numberOfFailure(String s);	 
+	 
+	 @Query(nativeQuery = true, value ="SELECT avg(TimeInMicro) FROM akira.aui_current where URLRequested = ?#{[0]}")
+	 int averageResponseTime(String s);	
+	 
 	 Page<AuiCurrent>findByTimeBetween(Date t1,Date t2,Pageable p);
 	 List<AuiCurrent>findByTimeBetween(Date t1,Date t2);
 		

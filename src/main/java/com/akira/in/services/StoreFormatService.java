@@ -9,18 +9,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
-
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.akira.in.model.AuiCurrent;
+import com.akira.in.model.AuiSummary;
 import com.akira.in.repository.AuiCurrentRepository;
+import com.akira.in.repository.AuiSummaryRepository;
 import com.akira.in.repository.ProcessFormats;
 import com.akira.in.util.Constant;
 
@@ -34,6 +32,9 @@ public class StoreFormatService {
 	@Resource
 	AuiCurrentRepository auiRepo;
 
+	@Resource
+	AuiSummaryRepository auisr;
+	
 	public void analysisFormat(String format, String testStr) {
 		format = format.trim();
 		List<String> nameList = new ArrayList<String>();
@@ -98,6 +99,8 @@ public class StoreFormatService {
 			e.printStackTrace();
 		}
 		
+		
+		
 		return list;
 	}
 	
@@ -119,7 +122,7 @@ public class StoreFormatService {
 		return pages;
 	}
 	
-	
-	
+
+
 
 }

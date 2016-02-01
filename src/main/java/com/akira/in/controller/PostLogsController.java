@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.akira.RO.Logs;
 import com.akira.in.model.AuiCurrent;
-
+import com.akira.in.model.AuiSummary;
 import com.akira.in.services.StoreFormatService;
+import com.akira.in.services.SummaryService;
 import com.akira.in.util.Constant;
 
 @RestController
@@ -24,8 +25,8 @@ import com.akira.in.util.Constant;
 public class PostLogsController {
 	@Resource
 	StoreFormatService formatService;
-
-
+	@Resource
+	SummaryService summaryservice;
 	
 	@RequestMapping(value = { "AUI/upload" }, method = RequestMethod.POST, headers = "content-type!=multipart/form-data")
 	public String saveLogsData(final HttpServletRequest request,
@@ -45,16 +46,33 @@ public class PostLogsController {
 			@RequestParam(value = "pS", required = false, defaultValue = "100") int pSize,
 			@RequestParam(value = "sB", required = false, defaultValue = "id") String sortBy,
 			@RequestParam(value = "or", required = false, defaultValue = "ASC") String order ,
-			@RequestParam(value = "date", required = false, defaultValue = "") String date ,
+			@RequestParam(value = "date", required = false, defaultValue = "2016-01-29") String date ,
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		List<AuiCurrent> auic = formatService.getAUILog(date,pNumber, pSize,order,sortBy);
 		int pageSize=formatService.getTotalPages(date, pSize);
 		Logs l=new Logs(pageSize,auic);//http://localhost:11011/logs/AUI/get?PageNumber=0&date=2016-01-22&or=ASC&pN=0&pS=100&sB=id
-		System.out.println(pageSize);
-		
-		
+		System.out.println(pageSize);	
 		return l;
 	}
+	
+	@RequestMapping(value = { "summary/get" }, method = RequestMethod.GET)
+	@ResponseBody
+	public Object getSummaryData(
+			@RequestParam(value = "pN", required = false, defaultValue = "0") int pNumber,
+			@RequestParam(value = "pS", required = false, defaultValue = "100") int pSize,
+			@RequestParam(value = "sB", required = false, defaultValue = "sid") String sortBy,
+			@RequestParam(value = "or", required = false, defaultValue = "ASC") String order ,
+			@RequestParam(value = "date", required = false, defaultValue = "2016-02-01") String date ,
+			final HttpServletRequest request, final HttpServletResponse response)
+			throws Exception {
+		List<AuiSummary> auic = summaryservice.getSummaryLog(date,pNumber, pSize,order,sortBy);
+
+		return auic;
+	}
+	
+	
+	
+	
 
 }

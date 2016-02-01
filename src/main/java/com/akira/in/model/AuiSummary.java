@@ -25,12 +25,12 @@ public class AuiSummary {
 		this.sid = sid;
 	}
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LogDate", nullable = false, length = 0)
-	public Date getDate() {
+	
+	@Column(name = "LogDate", nullable = false, length = 12)
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
@@ -66,7 +66,7 @@ public class AuiSummary {
 		this.averageTimeInMicro = averageTimeInMicro;
 	}
 	private Integer sid;
-	private Date date;
+	private String date;
 	private String urlRequested;
 	private Integer failureStatusCode;
 	private Integer successStatusCode;

@@ -10,6 +10,9 @@ var akira = angular.module('akira', []);
 	        templateUrl: 'ngviews/AllLogs.jsp',
 	        controller:'logCtrl'
 	      
+	      }).when('/summary', {
+		        templateUrl: 'ngviews/Summary.jsp',
+		        
 	      }).when('/logout', {
 		        templateUrl: 'ngviews/logout.jsp',
       
@@ -17,22 +20,26 @@ var akira = angular.module('akira', []);
 		          redirectTo: '/'
 		      });
 	  }]);
-	akira.controller("logCtrl",[ "$scope", "$log", "urlService",
-	                             function($scope,$log,urlService){
+	akira.controller("logCtrl",[ "$scope", "$log", "urlService","$location",
+	                             function($scope,$log,urlService,$location){
 
 			$scope.isVerify = true;
 			$scope.pageNumber=0;
 			$scope.sortByOrder="ASC";
 			$scope.sortByAttribute="id";
 			$scope.selectedtable="logs";
-			$scope.pageSizes=[10,25,50,100];
+			$scope.pageSizes=[1,25,50,100];
 			$scope.week=[];
-
+			$scope.paginationList=[];
 			for (var i = 1; i <= 30; i++) {
 				var date=new Date();
 				  var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 				date.setDate(date.getDate() - i)
 			   $scope.week.push(date.getFullYear()+"-"+("0" + (date.getMonth())+1).slice(-2)+"-"+("0" + date.getDate()).slice(-2));
+			}
+			
+			for (var i = 1; i <= 7; i++) {
+				$scope.paginationList.push(i);
 			}
 			
 			$scope.date=$scope.week[0];
@@ -44,35 +51,21 @@ var akira = angular.module('akira', []);
 				  $scope.totalPage = resultJson.pages;
 					
 					
-				});
-			
-				  
-				  /*
-					$log.log("00");
-					urlService.getAUILog($scope.date, $scope.pageNumber,$scope.pageSize, $scope.sortByOrder,$scope.sortByAttribute).then(function(resultJson) {
-						$log.log("success");
-						$log.log(angular.toJson(resultJson));
-						$scope.LogArray = resultJson.list;
-						$scope.totalPage = resultJson.pages;
-					}).error(function(error, status){
-						$log.log(angular.toJson(error));
-					});*/
-				  
-				  
-				  
-				  
+				});	  
 				  
 			};
-			
-			
-
-			
-			
+		
 			$scope.byDate=function(){
 				$scope.pageNumber=0;
 				$scope.getAndSetAUILogs();
 			};
+			$scope.byTable=function(){
 			
+			if($scope.selectedtable=="endpoint")
+					$location.path('/summary');
+				//console.log($location.path);
+				//$scope.getAndSetAUILogs();
+			};
 			
 			$scope.changeSize=function(){
 				$scope.pageNumber=0;
@@ -112,30 +105,27 @@ var akira = angular.module('akira', []);
 			};	
 			
 			$scope.visiblePageNumber= function(id) {
-				if($scope.pageNumber+id>=0&&$scope.pageNumber+id<$scope.totalPage){
+				if($scope.pageNumber>=3&&$scope.pageNumber<=$scope.totalPage-3)
+					{
+					if(id<=4&&id>=-2)
+						return true;
+					return false;
+					}
+				/*else if($scope.pageNumber+id>=0&&$scope.pageNumber+id<$scope.totalPage){
 					return true;
 				}
-				return false;
+				return false;*/
+				
+				if($scope.pageNumber<3){
+					if(id>=0&&id<=$scope.totalPage)return true;
+					return false;
+				}
+				
+				
 			};	
 			
 			
-			$scope.onPageClick=function(e,originalEvent,type,page){
-				$scope.pageNumber=page;
-				$scope.gotoPage(-1);
-	        	
 
-            };
-			  $scope.options = {
-			            currentPage: 1,
-			            totalPages: 10,
-			            onPageClicked:$scope.onPageClick 
-			          
-			       
-			            
-			        }
-
-			  $('#example').bootstrapPaginator($scope.options);
-			
 			
 			$scope.getAndSetAUILogs();
 			
