@@ -8,6 +8,7 @@
 			$scope.sortByAttribute="id";
 			$scope.selectedtable="logs";
 			$scope.pageSizes=[1,25,50,100];
+			$scope.pn=[1,2,3];
 			$scope.week=[];
 			$scope.paginationList=[];
 			for (var i = 1; i <= 30; i++) {
@@ -42,8 +43,7 @@
 			
 			if($scope.selectedtable=="endpoint")
 					$location.path('/summary');
-				//console.log($location.path);
-				//$scope.getAndSetAUILogs();
+
 			};
 			
 			$scope.changeSize=function(){
@@ -78,29 +78,10 @@
 				$scope.pageNumber = $scope.pageNumber - 1;
 				$scope.getAndSetAUILogs();
 			};
-			$scope.gotoPage = function(id) {
-				$scope.pageNumber = $scope.pageNumber + id;
+			$scope.loadPage = function(id) {
+				$scope.pageNumber = id-1;
+				//alert(id);
 				$scope.getAndSetAUILogs();
-			};	
-			
-			$scope.visiblePageNumber= function(id) {
-				if($scope.pageNumber>=3&&$scope.pageNumber<=$scope.totalPage-3)
-					{
-					if(id<=4&&id>=-2)
-						return true;
-					return false;
-					}
-				/*else if($scope.pageNumber+id>=0&&$scope.pageNumber+id<$scope.totalPage){
-					return true;
-				}
-				return false;*/
-				
-				if($scope.pageNumber<3){
-					if(id>=0&&id<=$scope.totalPage)return true;
-					return false;
-				}
-				
-				
 			};	
 			
 			

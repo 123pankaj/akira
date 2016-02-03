@@ -30,23 +30,22 @@ public class SummaryService {
 	@Resource
 	AuiCurrentRepository auiRepo;
 
-	public void summarizeLogs() {
+	public void summarizeLogs(String date) {
 		System.out.println("in ssss");
 
 		List<String> uniqueUrl = null;
 
-		uniqueUrl = auiRepo.findDistinctUrl();
+		uniqueUrl = auiRepo.findDistinctUrl(date);
 
 		AuiSummary auis;
 		for (String url : uniqueUrl) {
 			auis = new AuiSummary();
-			auis.setAverageTimeInMicro(auiRepo.averageResponseTime(url));
-			DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-
-			auis.setDate(dateformat.format(new Date()));
-
-			auis.setFailureStatusCode(auiRepo.numberOfFailure(url));
-			auis.setSuccessStatusCode(auiRepo.numberOfSuccess(url));
+			auis.setDate(date);	
+			
+			auis.setAverageTimeInMicro(auiRepo.averageResponseTime(url,date));
+			auis.setFailureStatusCode(auiRepo.numberOfFailure(url,date));
+			auis.setSuccessStatusCode(auiRepo.numberOfSuccess(url,date));
+			auis.setRedirectStatusCode(auiRepo.numberOfRedirect(url, date));
 			auis.setUrlRequested(url);
 			auisr.saveAndFlush(auis);
 
@@ -69,5 +68,21 @@ public class SummaryService {
 		return (int) Math.ceil((auisr.findByDate(d).size() / (float) pSize));
 
 	}
+	
+	public List<Integer> successListByUrlBetweenDates(String url,String startDate,String endDate){
+		return auisr.findSuccessListByUrlBetweenDates(url, startDate, endDate);
+	}
+	
+	public List<Integer> failureListByUrlBetweenDates(String url,String startDate,String endDate){
+		return auisr.findFailureListByUrlBetweenDates(url, startDate, endDate);
+	}
+	
+	public List<String> dateListByUrlBetweenDates(String url,String startDate,String endDate){
+		return auisr.findDateListByUrlBetweenDates(url, startDate, endDate);
+	}
+	
+	
+	
+	
 
 }

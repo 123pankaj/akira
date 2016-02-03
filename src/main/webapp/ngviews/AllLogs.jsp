@@ -58,23 +58,14 @@
 <div>
 
 	<ul class="pagination pagination-lg">
- 		<li><a ng-click="gotoPage(-6);"><<</a></li>
-		<li><a ng-click="gotoPage(-6);"><</a></li>
-		<li><a ng-show="visiblePageNumber(-6)" ng-click="gotoPage(-6);">{{pageNumber-5}}</a></li>
-		<li><a ng-show="visiblePageNumber(-5)" ng-click="gotoPage(-5);">{{pageNumber-4}}</a></li>
-		<li><a ng-show="visiblePageNumber(-4)" ng-click="gotoPage(-4);">{{pageNumber-3}}</a></li>
-		<li><a ng-show="visiblePageNumber(-3)" ng-click="gotoPage(-3);">{{pageNumber-2}}</a></li>
-		<li><a ng-show="visiblePageNumber(-2)" ng-click="gotoPage(-2);">{{pageNumber-1}}</a></li>
-		<li><a ng-show="visiblePageNumber(-1)" ng-click="gotoPage(-1);">{{pageNumber}}</a></li>
-		<li><a ng-show="visiblePageNumber(0)" class="active">{{pageNumber+1}}</a></li>
-		<li><a ng-show="visiblePageNumber(1)" ng-click="gotoPage(1);">{{pageNumber+2}}</a></li>
-		<li><a ng-show="visiblePageNumber(2)" ng-click="gotoPage(2);">{{pageNumber+3}}</a></li>
-		<li><a ng-show="visiblePageNumber(3)" ng-click="gotoPage(3);">{{pageNumber+4}}</a></li>
-		<li><a ng-show="visiblePageNumber(4)" ng-click="gotoPage(4);">{{pageNumber+5}}</a></li>
-		<li><a ng-show="visiblePageNumber(5)" ng-click="gotoPage(5);">{{pageNumber+6}}</a></li>
-		<li><a ng-show="visiblePageNumber(6)" ng-click="gotoPage(6);">{{pageNumber+7}}</a></li>
-		<li><a ng-click="gotoPage(-6);">></a></li>
-		<li><a ng-click="gotoPage(-6);">>></a></li>
+ 		
+		<li><a ng-click="loadPreLogs()"><</a></li>
+		<li><a ng-click="loadPage(pn[0])">{{pn[0]}}</a></li>
+		<li><a ng-click="loadPage(pn[1])">{{pn[1]}}</a></li>
+		<li><a ng-click="loadPage(pn[2])">{{pn[2]}}</a></li>
+
+		<li><a ng-click="loadNextLogs()">></a></li>
+		
 	
 	</ul>
 </div>

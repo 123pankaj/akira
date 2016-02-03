@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akira.RO.Logs;
+import com.akira.RO.StatusByDates;
 import com.akira.in.model.AuiCurrent;
 import com.akira.in.model.AuiSummary;
 import com.akira.in.services.StoreFormatService;
@@ -67,8 +68,6 @@ public class PostLogsController {
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		List<AuiSummary> auis = summaryservice.getSummaryLog(date,pNumber, pSize,order,sortBy);
-
-		
 		int pageSize=summaryservice.getTotalPages(date, pSize);
 		Logs l=new Logs(pageSize,auis);
 		System.out.println(pageSize);	
@@ -76,6 +75,40 @@ public class PostLogsController {
 		
 		
 	}
+	
+	
+	@RequestMapping(value = { "status/get" }, method = RequestMethod.GET)
+	@ResponseBody
+	public Object getStatusList(
+			@RequestParam(value = "sdate", required = false, defaultValue = "2016-02-01") String startDate,
+			@RequestParam(value = "edate", required = false, defaultValue = "2016-02-02") String endDate,
+			@RequestParam(value = "url", required = false, defaultValue = "xyz") String url,
+final HttpServletRequest request, final HttpServletResponse response)
+			throws Exception {
+		StatusByDates statusByDates=new StatusByDates();
+		statusByDates.setDates(summaryservice.dateListByUrlBetweenDates(url, startDate, endDate));
+		statusByDates.setNumberOfFailure(summaryservice.failureListByUrlBetweenDates(url, startDate, endDate));
+		statusByDates.setNumberOfSuccess(summaryservice.successListByUrlBetweenDates(url, startDate, endDate));
+		return statusByDates;
+		
+		
+	}
+
+	@RequestMapping(value = { "summary" }, method = RequestMethod.GET)
+	@ResponseBody
+	public Object summary(
+			@RequestParam(value = "date", required = false, defaultValue = "2016-02-01") String date,
+final HttpServletRequest request, final HttpServletResponse response)
+			throws Exception {
+		long startTime = System.currentTimeMillis();
+		summaryservice.summarizeLogs(date);
+		
+		return  System.currentTimeMillis()-startTime;
+		
+		
+	}
+	
+	
 	
 	
 	

@@ -70,6 +70,14 @@ public class AuiSummary {
 	private String urlRequested;
 	private Integer failureStatusCode;
 	private Integer successStatusCode;
+	private Integer redirectStatusCode;
+	@Column(name = "RedirectStatusCode",  nullable = false, length = 100)
+	public Integer getRedirectStatusCode() {
+		return redirectStatusCode;
+	}
+	public void setRedirectStatusCode(Integer redirectStatusCode) {
+		this.redirectStatusCode = redirectStatusCode;
+	}
 	private Integer averageTimeInMicro;
 	
 }
