@@ -8,7 +8,7 @@
 			$scope.sortByAttribute="id";
 			$scope.selectedtable="logs";
 			$scope.pageSizes=[1,25,50,100];
-			$scope.pn=[1,2,3];
+			$scope.pn=[1,2,3,4,5,6,7];
 			$scope.week=[];
 			$scope.paginationList=[];
 			for (var i = 1; i <= 30; i++) {
@@ -82,6 +82,16 @@
 				$scope.pageNumber = id-1;
 				//alert(id);
 				$scope.getAndSetAUILogs();
+				if($scope.pageNumber>3){
+					$scope.pn[0]=$scope.pageNumber-2;
+					$scope.pn[1]=$scope.pageNumber-1;
+					$scope.pn[2]=$scope.pageNumber-0;
+					$scope.pn[3]=$scope.pageNumber+1;
+					$scope.pn[4]=$scope.pageNumber+2;
+					$scope.pn[5]=$scope.pageNumber+3;
+					$scope.pn[6]=$scope.pageNumber+4;
+					
+				}
 			};	
 			
 			

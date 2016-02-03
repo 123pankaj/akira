@@ -23,6 +23,7 @@
 		<tr class="row">
 			<th ng-click="sortBy('URLRequested')">URL</th>
 			<th ng-click="sortBy('SuccessStatusCode')">#Success Code</th>
+			<th ng-click="sortBy('RedirectStatusCode')">#Redirect Code</th>
 			<th ng-click="sortBy('FailureStatusCode')">#Failure Code</th>
 			<th ng-click="sortBy('AverageTimeInMicro')">Average Response Time(micro seconds)</th>
 			
@@ -30,6 +31,7 @@
 		<tr ng-repeat="item in LogArray" class="row">
 			<td>{{item.urlRequested}}</td>
 			<td>{{item.successStatusCode}}</td>
+			<td>{{item.redirectStatusCode}}</td>
 			<td>{{item.failureStatusCode}}</td>
 			<td>{{item.averageTimeInMicro}}</td>
 		</tr>

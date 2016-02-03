@@ -63,7 +63,10 @@
 		<li><a ng-click="loadPage(pn[0])">{{pn[0]}}</a></li>
 		<li><a ng-click="loadPage(pn[1])">{{pn[1]}}</a></li>
 		<li><a ng-click="loadPage(pn[2])">{{pn[2]}}</a></li>
-
+		<li><a ng-click="loadPage(pn[3])">{{pn[3]}}</a></li>
+		<li><a ng-click="loadPage(pn[4])">{{pn[4]}}</a></li>
+		<li><a ng-click="loadPage(pn[5])">{{pn[5]}}</a></li>
+		<li><a ng-click="loadPage(pn[6])">{{pn[6]}}</a></li>
 		<li><a ng-click="loadNextLogs()">></a></li>
 		
 	
