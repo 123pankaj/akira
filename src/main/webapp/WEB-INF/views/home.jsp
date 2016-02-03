@@ -9,11 +9,16 @@
 <meta charset="utf-8">
 <title>Akira</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/angular-chart.min.css"/>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"> </script> 
 <script type="text/javascript" src="js/bootstrap.min.js"> </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"> </script>
+<script type="text/javascript" src="js/angular.min.js"> </script>
+<script type="text/javascript" src="js/angular-route.min.js"> </script>
 <script type="text/javascript" src="js/bootstrap-paginator.js"> </script>
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/chart.js"></script>
+<script type="text/javascript" src="js/angular-chart.min.js"> </script>
+
     
 <style>
 #logs tr th { cursor: pointer; }
@@ -39,6 +44,14 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Component <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#/logs">AUI</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a>More to come</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">AWS <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/logs">AutoScaling Group</a></li>
             <li role="separator" class="divider"></li>
             <li><a>More to come</a></li>
           </ul>

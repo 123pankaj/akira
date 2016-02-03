@@ -1,4 +1,4 @@
-var akira = angular.module('akira', []);
+var akira = angular.module('akira', ['chart.js','ngRoute']);
 	var remoteIp =location.host;
 	akira.config(['$routeProvider', function($routeProvider) {
 	    $routeProvider
