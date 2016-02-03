@@ -41,31 +41,33 @@ public class SummaryService {
 		for (String url : uniqueUrl) {
 			auis = new AuiSummary();
 			auis.setAverageTimeInMicro(auiRepo.averageResponseTime(url));
-			DateFormat dateformat=new SimpleDateFormat("yyyy-MM-dd");
-			
-			
+			DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+
 			auis.setDate(dateformat.format(new Date()));
-			
+
 			auis.setFailureStatusCode(auiRepo.numberOfFailure(url));
 			auis.setSuccessStatusCode(auiRepo.numberOfSuccess(url));
 			auis.setUrlRequested(url);
 			auisr.saveAndFlush(auis);
 
 		}
-		
-		
 
 	}
-	public List<AuiSummary> getSummaryLog(String d,int pagenumber, int pSize, String order,String sortBy) {
-			
-			PageRequest pageRequest = new PageRequest(pagenumber, pSize,order.equals("DESC")?Sort.Direction.DESC:Sort.Direction.ASC,sortBy);
-			Pageable p=pageRequest;
-			List<AuiSummary> list = new ArrayList<>();
-		
-				
-				list.addAll(auisr.findByDate(d, p).getContent());
-	
-			
+
+	public List<AuiSummary> getSummaryLog(String d, int pagenumber, int pSize, String order, String sortBy) {
+
+		PageRequest pageRequest = new PageRequest(pagenumber, pSize,
+				order.equals("DESC") ? Sort.Direction.DESC : Sort.Direction.ASC, sortBy);
+		Pageable p = pageRequest;
+		List<AuiSummary> list = new ArrayList<>();
+
+		list.addAll(auisr.findByDate(d, p).getContent());
 		return list;
 	}
+
+	public int getTotalPages(String d, int pSize) {
+		return (int) Math.ceil((auisr.findByDate(d).size() / (float) pSize));
+
+	}
+
 }

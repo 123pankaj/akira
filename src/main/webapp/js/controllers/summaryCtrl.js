@@ -1,20 +1,19 @@
-
-	akira.controller("logCtrl",[ "$scope", "$log", "urlService","$location",
+akira.controller("summaryCtrl",[ "$scope", "$log", "urlService","$location",
 	                             function($scope,$log,urlService,$location){
 
 			$scope.isVerify = true;
 			$scope.pageNumber=0;
 			$scope.sortByOrder="ASC";
-			$scope.sortByAttribute="id";
-			$scope.selectedtable="logs";
+			$scope.sortByAttribute="AverageTimeInMicro";
+			$scope.selectedtable="endpoint";
 			$scope.pageSizes=[1,25,50,100];
 			$scope.week=[];
 			$scope.paginationList=[];
-			for (var i = 1; i <= 30; i++) {
+			for (var i = 0; i <= 30; i++) {
 				var date=new Date();
-				  var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 				date.setDate(date.getDate() - i)
-			   $scope.week.push(date.getFullYear()+"-"+("0" + (date.getMonth())+1).slice(-2)+"-"+("0" + date.getDate()).slice(-2));
+			   $scope.week.push(date.getFullYear()+"-"+("0" + (date.getMonth()+1))+"-"+("0" + date.getDate()).slice(-2));
+			
 			}
 			
 			for (var i = 1; i <= 7; i++) {
@@ -23,38 +22,39 @@
 			
 			$scope.date=$scope.week[0];
 			$scope.pageSize=$scope.pageSizes[3];
-			$scope.getAndSetAUILogs=function(){
-				  
-				  urlService.getAUILog($scope.date,$scope.pageNumber,$scope.pageSize,$scope.sortByOrder,$scope.sortByAttribute).then(function(resultJson) {
+			$scope.getAndSetSummaryLogs=function(){
+				  urlService.getSummaryLog($scope.date,$scope.pageNumber,$scope.pageSize,$scope.sortByOrder,$scope.sortByAttribute).then(function(resultJson) {
 				  $scope.LogArray = resultJson.list;
 				  $scope.totalPage = resultJson.pages;
 					
 					
+					  console.log($scope.totalPage);
 				});	  
 				  
 			};
 		
 			$scope.byDate=function(){
 				$scope.pageNumber=0;
-				$scope.getAndSetAUILogs();
+				$scope.getAndSetSummaryLogs();
 			};
 			$scope.byTable=function(){
 			
-			if($scope.selectedtable=="endpoint")
-					$location.path('/summary');
+			if($scope.selectedtable=="logs")
+					$location.path('/logs');
 				//console.log($location.path);
 				//$scope.getAndSetAUILogs();
 			};
 			
 			$scope.changeSize=function(){
 				$scope.pageNumber=0;
-				$scope.getAndSetAUILogs();
+				$scope.getAndSetSummaryLogs();
 				
 			};
 			
 			$scope.table=function(){
 				alert($scope.selectedtable);
 			}
+		
 			
 			$scope.sortBy=function(attribute){
 				if($scope.sortByAttribute==attribute){
@@ -66,23 +66,23 @@
 					$scope.sortByOrder="ASC";			
 				}
 				$scope.pageNumber=0;
-				$scope.getAndSetAUILogs();
+				$scope.getAndSetSummaryLogs();
 			};
 			
 			$scope.loadNextLogs = function() {
 				$scope.pageNumber = $scope.pageNumber + 1;
-				$scope.getAndSetAUILogs();
+				$scope.getAndSetSummaryLogs();
 				
 			};
 			$scope.loadPreLogs = function() {
 				$scope.pageNumber = $scope.pageNumber - 1;
-				$scope.getAndSetAUILogs();
+				$scope.getAndSetSummaryLogs();
 			};
 			$scope.gotoPage = function(id) {
 				$scope.pageNumber = $scope.pageNumber + id;
-				$scope.getAndSetAUILogs();
+				$scope.getAndSetSummaryLogs();
 			};	
-			
+			/*
 			$scope.visiblePageNumber= function(id) {
 				if($scope.pageNumber>=3&&$scope.pageNumber<=$scope.totalPage-3)
 					{
@@ -90,10 +90,10 @@
 						return true;
 					return false;
 					}
-				/*else if($scope.pageNumber+id>=0&&$scope.pageNumber+id<$scope.totalPage){
+				else if($scope.pageNumber+id>=0&&$scope.pageNumber+id<$scope.totalPage){
 					return true;
 				}
-				return false;*/
+				return false;
 				
 				if($scope.pageNumber<3){
 					if(id>=0&&id<=$scope.totalPage)return true;
@@ -101,15 +101,13 @@
 				}
 				
 				
-			};	
+			};	*/
 			
 			
 
 			
-			$scope.getAndSetAUILogs();
+			$scope.getAndSetSummaryLogs();
 			
 				
-	}]);
-
-	
+	}]);	
 	

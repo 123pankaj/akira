@@ -46,12 +46,12 @@ public class PostLogsController {
 			@RequestParam(value = "pS", required = false, defaultValue = "100") int pSize,
 			@RequestParam(value = "sB", required = false, defaultValue = "id") String sortBy,
 			@RequestParam(value = "or", required = false, defaultValue = "ASC") String order ,
-			@RequestParam(value = "date", required = false, defaultValue = "2016-01-29") String date ,
+			@RequestParam(value = "date", required = false, defaultValue = "2016-01-28") String date ,
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		List<AuiCurrent> auic = formatService.getAUILog(date,pNumber, pSize,order,sortBy);
 		int pageSize=formatService.getTotalPages(date, pSize);
-		Logs l=new Logs(pageSize,auic);//http://localhost:11011/logs/AUI/get?PageNumber=0&date=2016-01-22&or=ASC&pN=0&pS=100&sB=id
+		Logs l=new Logs(pageSize,auic);
 		System.out.println(pageSize);	
 		return l;
 	}
@@ -66,9 +66,15 @@ public class PostLogsController {
 			@RequestParam(value = "date", required = false, defaultValue = "2016-02-01") String date ,
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
-		List<AuiSummary> auic = summaryservice.getSummaryLog(date,pNumber, pSize,order,sortBy);
+		List<AuiSummary> auis = summaryservice.getSummaryLog(date,pNumber, pSize,order,sortBy);
 
-		return auic;
+		
+		int pageSize=summaryservice.getTotalPages(date, pSize);
+		Logs l=new Logs(pageSize,auis);
+		System.out.println(pageSize);	
+		return l;
+		
+		
 	}
 	
 	

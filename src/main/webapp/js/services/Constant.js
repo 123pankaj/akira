@@ -1,7 +1,8 @@
 akira.constant("Constant", {
 
 	staticUrls : {
-		getAuiLogUrl : 'http://' + remoteIp + '/logs/AUI/get'
+		getAuiLogUrl : 'http://' + remoteIp + '/logs/AUI/get',
+		getSummaryLogUrl : 'http://' + remoteIp + '/logs/summary/get'
 		
 	},
 	logMessages : {

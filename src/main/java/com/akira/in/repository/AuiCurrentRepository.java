@@ -19,25 +19,7 @@ public interface AuiCurrentRepository extends JpaRepository<AuiCurrent, Integer>
 	
 
 	
-/*	 @Query(nativeQuery = true, value ="SELECT * FROM akira.aui_current WHERE cast(time as date) = ?#{[0]} "
-	 		+ "ORDER BY "
-	 		+ "CASE ?#{[4]} "
-	 		+ "WHEN 'id' THEN id "
-	 		+ "WHEN 'TimeInMicro' THEN TimeInMicro "
-	 		+ "END, CASE ?#{[4]} "
-	 		+ "WHEN 'Endpoint' THEN Endpoint "
-	 		+ "WHEN 'RemoteHostName' THEN RemoteHostName "
-	 		+ "WHEN 'RequestMethod' THEN RequestMethod "
-	 		+ "WHEN 'statusCode' THEN statusCode "
-	 		+ "WHEN 'byteSent' THEN byteSent "
-	 		+ "WHEN 'ReferHead' THEN ReferHead "
-	 		+ "WHEN 'userAgent' THEN userAgent "
-	 		+ "WHEN 'ProcessId' THEN ProcessId "
-	 		+ "END, CASE ?#{[4]} "
-	 		+ "WHEN 'time' THEN time "
-	 		+ "END ASC LIMIT ?#{[1]} OFFSET ?#{[2]}")
-	 Set<AuiCurrent>findLogsByDateAsc(String date,int limit, int offset, String order,String sortBy);
-*/
+
 	
 	 @Query(nativeQuery = true, value ="Select distinct URLRequested from aui_current")
 	 List<String>findDistinctUrl();
@@ -54,6 +36,7 @@ public interface AuiCurrentRepository extends JpaRepository<AuiCurrent, Integer>
 	 Page<AuiCurrent>findByTimeBetween(Date t1,Date t2,Pageable p);
 	 List<AuiCurrent>findByTimeBetween(Date t1,Date t2);
 		
-	 
+	 @Query(nativeQuery = true, value ="SELECT count(*) FROM akira.aui_current where time between ?#{[0]} and ?#{[1]}")
+	 int totalLogsBetween(String d0,String d1);
 
 }

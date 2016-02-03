@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+
+import org.joda.time.Days;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -106,20 +108,19 @@ public class StoreFormatService {
 	
 	
 	public int getTotalPages(String d, int pSize) {
-		
-		
-		int pages=0;
+
+		DateFormat dateformat=new SimpleDateFormat("yyyy-mm-dd");
+		Date dayEnd=new Date();
 		try {
-			DateFormat dateformat=new SimpleDateFormat("yyyy-mm-dd HH:mm:ss.S");
-			Date dayStart=dateformat.parse(d+" 00:00:00.0");
-			Date dayEnd=dateformat.parse(d+" 23:59:59.9");
-			pages=(int) Math.ceil((auiRepo.findByTimeBetween(dayStart,dayEnd).size()/(float)pSize));
+
+			 dayEnd=new Date((dateformat.parse(d).getTime()+24*60*60*1000));
+			System.out.println(auiRepo.totalLogsBetween(d,dateformat.format(dayEnd)));
 		} catch (ParseException e) {
 			
 			e.printStackTrace();
 		}
 		
-		return pages;
+		return auiRepo.totalLogsBetween(d,dateformat.format(dayEnd));
 	}
 	
 

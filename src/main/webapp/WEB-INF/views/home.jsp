@@ -49,10 +49,11 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div ng-view></div></div>
-<script type="text/javascript" src="js/controllers/logCtrl.js">
-
-</script>
+<div ng-view></div>
+</div>
+<script type="text/javascript" src="js/homeInit.js"></script>
+<script type="text/javascript" src="js/controllers/logCtrl.js"></script>
+<script type="text/javascript" src="js/controllers/summaryCtrl.js"></script>
 <script type="text/javascript" src="js/services/Constant.js"></script>
 <script type="text/javascript" src="js/services/urlService.js"></script>
 </body>
