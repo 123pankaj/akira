@@ -5,14 +5,19 @@
 	  $scope.distinctUrl=[];
 	  
 	  $scope.getAndSetSummaryLogs=function(){
+<<<<<<< Updated upstream
 		
 		  urlService.getGUILog($scope.currentUrl).then(function(resultJson) {
 		  
+=======
+		  urlService.getGUILog().then(function(resultJson) {
+		
+>>>>>>> Stashed changes
 		  $scope.data = {
 			      labels: resultJson.dates,
 			      datasets: [
 			        {
-			          label: 'My First dataset',
+			          label: 'Number of Success',
 			          fillColor: 'rgba(220,220,220,0.5)',
 			          strokeColor: 'rgba(220,220,220,0.8)',
 			          highlightFill: 'rgba(220,220,220,0.75)',
@@ -20,22 +25,36 @@
 			          data: resultJson.numberOfSuccess,
 			        },
 			        {
-			          label: 'My Second dataset',
+			          label: 'Number of Failure',
 			          fillColor: 'rgba(151,187,205,0.5)',
 			          strokeColor: 'rgba(151,187,205,0.8)',
 			          highlightFill: 'rgba(151,187,205,0.75)',
 			          highlightStroke: 'rgba(151,187,205,1)',
 			          data:resultJson.numberOfFailure,
-			        }
+			        },
+			        {
+				          label: 'Number of  Redirects',
+				          fillColor: 'rgba(151,187,205,0.5)',
+				          strokeColor: 'rgba(151,187,205,0.8)',
+				          highlightFill: 'rgba(151,187,205,0.75)',
+				          highlightStroke: 'rgba(151,187,205,1)',
+				          data:resultJson.numberOfRedirect,
+				        },
+				        
 			      ]
 			    };
-
-			
-		//	  console.log($scope.totalPage);
-		});	  
+		  });	  
+		  $scope.geturls=function(){
+			  urlService.getUrlLog().then(function(resultJson){
+			  
+			  });
+		  
+		  
+		  
 		  
 	};
 	  
+<<<<<<< Updated upstream
 	
 	  $scope.getAndSetDisticlUrl=function(){
 			
@@ -56,6 +75,11 @@
 	
 	
 
+=======
+
+	
+	$scope.getAndSetSummaryLogs();
+>>>>>>> Stashed changes
 	  
 
     // Chart.js Data

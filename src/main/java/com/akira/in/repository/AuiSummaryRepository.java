@@ -23,6 +23,9 @@ public interface AuiSummaryRepository extends JpaRepository<AuiSummary, Integer>
 	 @Query(nativeQuery = true, value ="SELECT SuccessStatusCode FROM akira.aui_summary where URLRequested=?#{[0]} and LogDate between ?#{[1]} and ?#{[2]}")
 	 List<Integer>findSuccessListByUrlBetweenDates(String url,String startDate,String endDate);
 	
+	 @Query(nativeQuery = true, value ="SELECT AverageTimeInMicro FROM akira.aui_summary where URLRequested=?#{[0]} and LogDate between ?#{[1]} and ?#{[2]}")
+	 List<Integer>findResponseTimeListByUrlBetweenDates(String url,String startDate,String endDate);
+	 
 	 @Query(nativeQuery = true, value ="SELECT FailureStatusCode FROM akira.aui_summary where URLRequested=?#{[0]} and LogDate between ?#{[1]} and ?#{[2]}")
 	 List<Integer>findFailureListByUrlBetweenDates(String url,String startDate,String endDate);
 

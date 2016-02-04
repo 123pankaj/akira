@@ -82,7 +82,9 @@ public class SummaryService {
 	public List<String> dateListByUrlBetweenDates(String url,String startDate,String endDate){
 		return auisr.findDateListByUrlBetweenDates(url, startDate, endDate);
 	}
-	
+	public List<Integer> findResponseTimeListByUrlBetweenDates(String url,String startDate,String endDate){
+		return auisr.findResponseTimeListByUrlBetweenDates(url, startDate, endDate);
+	}
 	
 	public List<String>getDistinctUrl(String startDate,String endDate){
 		return auisr.getDistinctUrl(startDate, endDate);

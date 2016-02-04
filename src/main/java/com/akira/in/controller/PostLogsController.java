@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akira.RO.Logs;
+import com.akira.RO.ResponseByDates;
 import com.akira.RO.StatusByDates;
 import com.akira.in.model.AuiCurrent;
 import com.akira.in.model.AuiSummary;
@@ -99,7 +100,24 @@ final HttpServletRequest request, final HttpServletResponse response)
 		statusByDates.setNumberOfRedirect(summaryservice.redirectListByUrlBetweenDates(url, startDate, endDate));
 		return statusByDates;	
 	}
-	
+	@RequestMapping(value = { "ResponseTime/get" }, method = RequestMethod.GET)
+	@ResponseBody
+	public Object getResponseTimeList(
+			@RequestParam(value = "url", required = false, defaultValue = "xyz") String url,
+final HttpServletRequest request, final HttpServletResponse response)
+			throws Exception {
+		ResponseByDates responseBydates=new ResponseByDates();
+		DateFormat df=new SimpleDateFormat("dd-MM-yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		String startDate=df.format(cal.getTime());
+		cal.add(Calendar.DATE, -7);
+		String endDate=df.format(cal.getTime());
+		responseBydates.setDates(summaryservice.dateListByUrlBetweenDates(url, startDate, endDate));
+		responseBydates.setNumberOfResponseTime(summaryservice.findResponseTimeListByUrlBetweenDates(url, startDate, endDate));
+		//statusByDates.setNumberOfRedirect(summaryservice.redirectListByUrlBetweenDates(url, startDate, endDate));
+		return responseBydates;	
+	}	
 	@RequestMapping(value = { "distinctUrl" }, method = RequestMethod.GET)
 	@ResponseBody
 	public Object getDistinctUrl(
