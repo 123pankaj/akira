@@ -29,6 +29,14 @@ akira.service("urlService",
 						return (request.then(handleSuccess, handleError));
 					}
 
+					function getGUILog() {
+						var request=$http.get(staticUrls.getGuiLogUrl);
+						
+					//	console.log("-"+staticUrls.getGuiLogUrl+" "+date+" "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
+						return (request.then(handleSuccess, handleError));
+					}
+					
+					
 					function handleError(response) {
 						if (!angular.isObject(response.data)
 								|| !response.data.message) {
@@ -62,6 +70,7 @@ akira.service("urlService",
 					return ({
 						getAUILog : getAUILog,
 						getSummaryLog : getSummaryLog,
+						getGUILog : getGUILog,
 					});
 
 				} ]);

@@ -1,9 +1,43 @@
 
 //	angular.module( "akira", [ 'tc.chartjs' ])
-  akira.controller( "guictrl", function( $scope ) {
+  akira.controller( "guictrl",[ "$scope", "urlService", function( $scope,urlService ) {
+	  $scope.getAndSetSummaryLogs=function(){
+		 // console.log("--");
+		  urlService.getGUILog().then(function(resultJson) {
+		  
+		  $scope.data = {
+			      labels: resultJson.dates,
+			      datasets: [
+			        {
+			          label: 'My First dataset',
+			          fillColor: 'rgba(220,220,220,0.5)',
+			          strokeColor: 'rgba(220,220,220,0.8)',
+			          highlightFill: 'rgba(220,220,220,0.75)',
+			          highlightStroke: 'rgba(220,220,220,1)',
+			          data: resultJson.numberOfSuccess,
+			        },
+			        {
+			          label: 'My Second dataset',
+			          fillColor: 'rgba(151,187,205,0.5)',
+			          strokeColor: 'rgba(151,187,205,0.8)',
+			          highlightFill: 'rgba(151,187,205,0.75)',
+			          highlightStroke: 'rgba(151,187,205,1)',
+			          data:resultJson.numberOfFailure,
+			        }
+			      ]
+			    };
+
+			
+		//	  console.log($scope.totalPage);
+		});	  
+		  
+	};
+	  
+	$scope.getAndSetSummaryLogs();
+	  
 
     // Chart.js Data
-    $scope.data = {
+   /* $scope.data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
         {
@@ -24,8 +58,8 @@
         }
       ]
     };
-
-    // Chart.js Options
+*/
+  /*  // Chart.js Options
     $scope.options =  {
 
       // Sets the chart to be responsive
@@ -58,5 +92,5 @@
       //String - A legend template
       legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
     };
-
-  });
+*/
+  }]);
