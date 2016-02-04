@@ -90,8 +90,18 @@
 					$scope.pn[4]=$scope.pageNumber+2;
 					$scope.pn[5]=$scope.pageNumber+3;
 					$scope.pn[6]=$scope.pageNumber+4;
-					
 				}
+				
+				if($scope.pageNumber<=3){
+					$scope.pn=[1,2,3,4,5,6,7];
+					
+				}	
+				
+				
+				
+				
+				
+				
 			};	
 			
 			

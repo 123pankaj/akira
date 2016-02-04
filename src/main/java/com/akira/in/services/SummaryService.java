@@ -76,7 +76,9 @@ public class SummaryService {
 	public List<Integer> failureListByUrlBetweenDates(String url,String startDate,String endDate){
 		return auisr.findFailureListByUrlBetweenDates(url, startDate, endDate);
 	}
-	
+	public List<Integer> redirectListByUrlBetweenDates(String url,String startDate,String endDate){
+		return auisr.findRedirectListByUrlBetweenDates(url, startDate, endDate);
+	}
 	public List<String> dateListByUrlBetweenDates(String url,String startDate,String endDate){
 		return auisr.findDateListByUrlBetweenDates(url, startDate, endDate);
 	}

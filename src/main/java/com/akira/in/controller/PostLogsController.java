@@ -89,6 +89,7 @@ final HttpServletRequest request, final HttpServletResponse response)
 		statusByDates.setDates(summaryservice.dateListByUrlBetweenDates(url, startDate, endDate));
 		statusByDates.setNumberOfFailure(summaryservice.failureListByUrlBetweenDates(url, startDate, endDate));
 		statusByDates.setNumberOfSuccess(summaryservice.successListByUrlBetweenDates(url, startDate, endDate));
+		statusByDates.setNumberOfRedirect(summaryservice.redirectListByUrlBetweenDates(url, startDate, endDate));
 		return statusByDates;
 		
 		
