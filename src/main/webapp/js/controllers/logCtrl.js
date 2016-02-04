@@ -1,6 +1,7 @@
 
 	akira.controller("logCtrl",[ "$scope", "$log", "urlService","$location",
 	                             function($scope,$log,urlService,$location){
+		console.log("on logged page");
 
 			$scope.isVerify = true;
 			$scope.pageNumber=0;
@@ -103,10 +104,6 @@
 				
 				
 			};	
-			
-			
-
-			
 			$scope.getAndSetAUILogs();
 			
 				
