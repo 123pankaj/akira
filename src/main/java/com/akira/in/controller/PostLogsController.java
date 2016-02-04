@@ -1,5 +1,8 @@
 package com.akira.in.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -80,20 +83,39 @@ public class PostLogsController {
 	@RequestMapping(value = { "status/get" }, method = RequestMethod.GET)
 	@ResponseBody
 	public Object getStatusList(
-			@RequestParam(value = "sdate", required = false, defaultValue = "2016-02-01") String startDate,
-			@RequestParam(value = "edate", required = false, defaultValue = "2016-02-02") String endDate,
 			@RequestParam(value = "url", required = false, defaultValue = "xyz") String url,
 final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		StatusByDates statusByDates=new StatusByDates();
+		DateFormat df=new SimpleDateFormat("dd-MM-yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		String startDate=df.format(cal.getTime());
+		cal.add(Calendar.DATE, -7);
+		String endDate=df.format(cal.getTime());
 		statusByDates.setDates(summaryservice.dateListByUrlBetweenDates(url, startDate, endDate));
 		statusByDates.setNumberOfFailure(summaryservice.failureListByUrlBetweenDates(url, startDate, endDate));
 		statusByDates.setNumberOfSuccess(summaryservice.successListByUrlBetweenDates(url, startDate, endDate));
 		statusByDates.setNumberOfRedirect(summaryservice.redirectListByUrlBetweenDates(url, startDate, endDate));
-		return statusByDates;
-		
-		
+		return statusByDates;	
 	}
+	
+	@RequestMapping(value = { "distinctUrl" }, method = RequestMethod.GET)
+	@ResponseBody
+	public Object getDistinctUrl(
+final HttpServletRequest request, final HttpServletResponse response)
+			throws Exception {
+		
+		DateFormat df=new SimpleDateFormat("dd-MM-yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		String startDate=df.format(cal.getTime());
+		cal.add(Calendar.DATE, -7);
+		String endDate=df.format(cal.getTime());
+	return summaryservice.getDistinctUrl(startDate, endDate);	
+	}
+	
+	
 
 	@RequestMapping(value = { "summary" }, method = RequestMethod.GET)
 	@ResponseBody
@@ -103,10 +125,7 @@ final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		long startTime = System.currentTimeMillis();
 		summaryservice.summarizeLogs(date);
-		
 		return  System.currentTimeMillis()-startTime;
-		
-		
 	}
 	
 	

@@ -84,7 +84,9 @@ public class SummaryService {
 	}
 	
 	
-	
+	public List<String>getDistinctUrl(String startDate,String endDate){
+		return auisr.getDistinctUrl(startDate, endDate);
+	}
 	
 
 }
