@@ -8,6 +8,9 @@
 <head>
 <meta charset="utf-8">
 <title>Akira</title>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.css" rel="stylesheet"> 
+    
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/angular-chart.min.css"/>
@@ -18,8 +21,7 @@
 <script type="text/javascript" src="js/bootstrap-paginator.js"> </script>
 <script type="text/javascript" src="js/chart.js"></script>
 <script type="text/javascript" src="js/angular-chart.min.js"> </script>
-
-    
+<script type="text/javascript" src="js/tc-angular-chartjs.js"> </script>
 <style>
 #logs tr th { cursor: pointer; }
 </style>
@@ -45,8 +47,10 @@
           <ul class="dropdown-menu">
             <li><a href="#/logs">AUI</a></li>
             <li role="separator" class="divider"></li>
+             <li><a href="#/gui">Graphs</a></li>
+            <li role="separator" class="divider"></li> 
             <li><a>More to come</a></li>
-          </ul>
+        </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">AWS <span class="caret"></span></a>
@@ -66,8 +70,10 @@
 </div>
 <script type="text/javascript" src="js/homeInit.js"></script>
 <script type="text/javascript" src="js/controllers/logCtrl.js"></script>
+<script type="text/javascript" src="js/controllers/guictrl.js"></script>
 <script type="text/javascript" src="js/controllers/summaryCtrl.js"></script>
 <script type="text/javascript" src="js/services/Constant.js"></script>
 <script type="text/javascript" src="js/services/urlService.js"></script>
+
 </body>
 </html>
