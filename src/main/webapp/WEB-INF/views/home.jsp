@@ -22,6 +22,7 @@
 <script type="text/javascript" src="js/chart.js"></script>
 <script type="text/javascript" src="js/angular-chart.min.js"> </script>
 <script type="text/javascript" src="js/tc-angular-chartjs.js"> </script>
+<script type="text/javascript" src="http://labs.easyblog.it/bootstrap-list-filter/bootstrap-list-filter.src.js"> </script>
 <style>
 #logs tr th { cursor: pointer; }
 </style>

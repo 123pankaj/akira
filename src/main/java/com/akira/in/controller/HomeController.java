@@ -21,7 +21,7 @@ public class HomeController {
 	@Resource
 	ProcessFormats formatService;
 	
-	@RequestMapping(value = { "verify" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "verify" }, method = RequestMethod.GET)
 	public ModelAndView getLogFormat(
 			@RequestParam(value = "logFormat") String format,
 			@RequestParam(value = "testStr") String testStr) {

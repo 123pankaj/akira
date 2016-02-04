@@ -1,9 +1,12 @@
 
 //	angular.module( "akira", [ 'tc.chartjs' ])
   akira.controller( "guictrl",[ "$scope", "urlService", function( $scope,urlService ) {
+	  $('#searchlist').btsListFilter('#searchinput', {itemChild: 'span'});
+	  $scope.distinctUrl=[];
+	  
 	  $scope.getAndSetSummaryLogs=function(){
-		 // console.log("--");
-		  urlService.getGUILog().then(function(resultJson) {
+		
+		  urlService.getGUILog($scope.currentUrl).then(function(resultJson) {
 		  
 		  $scope.data = {
 			      labels: resultJson.dates,
@@ -33,7 +36,26 @@
 		  
 	};
 	  
-	$scope.getAndSetSummaryLogs();
+	
+	  $scope.getAndSetDisticlUrl=function(){
+			
+		  urlService.getDistinctUrl().then(function(resultJson) {
+			  $scope.distinctUrl=resultJson;
+			  $scope.currentUrl=$scope.distinctUrl[0];  
+				$scope.getAndSetSummaryLogs();
+		  });
+		  }
+		  
+	 $scope.loadUrlData=function(url){
+		 $scope.currentUrl=url;
+		 console.log($scope.currentUrl);
+		 $scope.getAndSetSummaryLogs();
+	 }
+	  
+	  $scope.getAndSetDisticlUrl();
+	
+	
+
 	  
 
     // Chart.js Data

@@ -1,10 +1,16 @@
-<!--  --><canvas id="line" class="chart chart-line" data="chartData.data" labels="chartData.labels" legend="true" >
-</canvas>-->
-
-<!--<canvas tc-chartjs chart-type="line" chart-data="data" chart-options="options"></canvas>-->
 
 
-<div ng-app="akira"><div ng-controller="guictrl">  
+<div class="col-md-8">  
     <canvas tc-chartjs-bar chart-options="options" chart-data="data" auto-legend></canvas>
 
-  </div></div>  
+</div>  
+<div class="col-md-2">
+<form role="form">
+		<div class="form-group">
+			<input class="form-control" id="searchinput" type="search" placeholder="Search..." />
+		</div>
+		<div id="searchlist" class="list-group pre-scrollable">
+			<a ng-repeat="item in distinctUrl" class="list-group-item" ng-click="loadUrlData(item)">{{item}}</a>
+</div>
+	</form>
+</div>

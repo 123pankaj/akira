@@ -29,8 +29,13 @@ akira.service("urlService",
 						return (request.then(handleSuccess, handleError));
 					}
 
-					function getGUILog() {
-						var request=$http.get(staticUrls.getGuiLogUrl);
+					function getGUILog(url) {
+						var request=$http.get(staticUrls.getGuiLogUrl, {
+							params : {
+								url : url,
+								
+							}
+						});
 						
 					//	console.log("-"+staticUrls.getGuiLogUrl+" "+date+" "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
 						return (request.then(handleSuccess, handleError));
@@ -63,6 +68,16 @@ akira.service("urlService",
 						console.log("-"+staticUrls.getAuiLogUrl+" "+date+" "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
 						return (request.then(handleSuccess, handleError));
 					}	
+
+					
+					function getDistinctUrl() {
+						var request=$http.get(staticUrls.getDistinctUrl);
+						
+						return (request.then(handleSuccess, handleError));
+					}	
+					
+					
+					
 					
 					
 					
@@ -71,6 +86,7 @@ akira.service("urlService",
 						getAUILog : getAUILog,
 						getSummaryLog : getSummaryLog,
 						getGUILog : getGUILog,
+						 getDistinctUrl: getDistinctUrl
 					});
 
 				} ]);
