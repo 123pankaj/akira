@@ -6,13 +6,14 @@ public class StatusByDates {
 private List<Integer> numberOfSuccess;
 private List<Integer> numberOfFailure;
 private List<Integer> numberOfRedirect;
+private List<String> dates;
 public List<Integer> getNumberOfRedirect() {
 	return numberOfRedirect;
 }
 public void setNumberOfRedirect(List<Integer> numberOfRedirect) {
 	this.numberOfRedirect = numberOfRedirect;
 }
-private List<String> dates;
+
 public List<Integer> getNumberOfSuccess() {
 	return numberOfSuccess;
 }
