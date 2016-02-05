@@ -4,17 +4,10 @@
 	  $('#searchlist').btsListFilter('#searchinput', {itemChild: 'a'});
 	  $scope.distinctUrl=[];
 	  
-<<<<<<< HEAD
+$scope.type="status";
 	  $scope.getAndSetSummaryLogsbystatus=function(){
 				  urlService.getGUILogbyStatus($scope.currentUrl).then(function(resultJson) {
 				$scope.data = {
-=======
-	  $scope.getAndSetSummaryLogs=function(){
-
-		
-		  urlService.getGUILog($scope.currentUrl).then(function(resultJson) {
-		  $scope.data = {
->>>>>>> 94475972f17eb574b6ebc4b93f28ef91c97462b6
 			      labels: resultJson.dates,
 			      datasets: [
 			        {
@@ -43,9 +36,7 @@
 				        }
 				 ]
 			    };
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+
 		    });	  
 		  };
 		$scope.getAndSetSummaryLogsbyresponsetime=function(){
@@ -64,7 +55,8 @@
 		       ]
 		    };
 	});
-	
+		};
+		
 		$scope.bytype=function(){
 		if($scope.type=="status")
 			$scope.getAndSetSummaryLogsbystatus();
@@ -73,54 +65,22 @@
 	};
 
 	
-=======
->>>>>>> Stashed changes
-		  });	  
-	  }
 
 	  	
-<<<<<<< Updated upstream
-=======
->>>>>>> 94475972f17eb574b6ebc4b93f28ef91c97462b6
->>>>>>> Stashed changes
-	  $scope.getAndSetDisticlUrl=function(){
-			
+
+	  $scope.getAndSetDisticlUrl=function(){	
 		  urlService.getDistinctUrl().then(function(resultJson) {
 			  $scope.distinctUrl=resultJson;
 			  $scope.currentUrl=$scope.distinctUrl[0];  
 				$scope.getAndSetSummaryLogsbystatus();
 		  });
 		  }
-		  
-	 $scope.loadUrlData=function(url){
-		 $scope.currentUrl=url;
-		 console.log($scope.currentUrl);
-		 $scope.getAndSetSummaryLogs();
-	 };
+		  $scope.loadUrlData=function(url){
+			$scope.currentUrl=url; 
+			$scope.bytype();
+		  };
 	  
 	  $scope.getAndSetDisticlUrl();
-<<<<<<< Updated upstream
-	
 
-
-	
-=======
-<<<<<<< HEAD
-  }}]);
-=======
-	
-
-
-	
->>>>>>> Stashed changes
-	
-
-	  
-
-
-<<<<<<< Updated upstream
   }]);
-=======
-  }]);
->>>>>>> 94475972f17eb574b6ebc4b93f28ef91c97462b6
->>>>>>> Stashed changes
+
