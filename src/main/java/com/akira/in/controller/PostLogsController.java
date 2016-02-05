@@ -1,9 +1,12 @@
 package com.akira.in.controller;
 
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.akira.RO.Logs;
 import com.akira.RO.ResponseByDates;
 import com.akira.RO.StatusByDates;
+
 import com.akira.in.model.AuiCurrent;
 import com.akira.in.model.AuiSummary;
+import com.akira.in.repository.AuiCurrentRepository;
+import com.akira.in.repository.AuiSummaryRepository;
 import com.akira.in.services.StoreFormatService;
 import com.akira.in.services.SummaryService;
 import com.akira.in.util.Constant;
@@ -33,6 +39,11 @@ public class PostLogsController {
 	@Resource
 	SummaryService summaryservice;
 	
+	@Resource
+	AuiCurrentRepository a;
+
+	@Resource
+	AuiSummaryRepository auisr;
 	@RequestMapping(value = { "AUI/upload" }, method = RequestMethod.POST, headers = "content-type!=multipart/form-data")
 	public String saveLogsData(final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
@@ -142,7 +153,69 @@ final HttpServletRequest request, final HttpServletResponse response)
 final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		long startTime = System.currentTimeMillis();
-		summaryservice.summarizeLogs(date);
+	AuiSummary auis;
+	List<Object[]> aa= a.average();
+	List<Object[]>  ss=a.success();
+	List<Object[]>  ff=a.failure();
+	List<Object[]>  rr=a.redirect();
+	
+					HashMap<String, Integer> avg=new HashMap<>();
+					HashMap<String, Integer> success=new HashMap<>();
+					HashMap<String, Integer> failure=new HashMap<>();
+					HashMap<String, Integer> redirect=new HashMap<>();
+					
+				
+					
+					for(Object[] t:aa){
+						avg.put(t[0].toString(), Integer.parseInt(t[1].toString().substring(0, t[1].toString().indexOf("."))));
+					}
+					
+					for(Object[] t:ss){
+						success.put(t[0].toString(), Integer.parseInt(t[1].toString()));
+					}
+					
+					for(Object[] t:ff){
+						failure.put(t[0].toString(), Integer.parseInt(t[1].toString()));
+					}
+					
+					for(Object[] t:rr){
+						redirect.put(t[0].toString(), Integer.parseInt(t[1].toString()));
+					}
+	
+		
+		Set<String> urlset=avg.keySet();
+		for(String url:urlset){
+			auis = new AuiSummary();
+			auis.setUrlRequested(url);
+			if(success.containsKey(url)){
+				auis.setSuccessStatusCode(success.get(url));
+			}
+			else{
+				auis.setSuccessStatusCode(0);
+			}
+			
+			if(failure.containsKey(url)){
+				auis.setFailureStatusCode(failure.get(url));
+			}
+			else{
+				auis.setFailureStatusCode(0);
+			}
+			
+			
+			if(redirect.containsKey(url)){
+				auis.setRedirectStatusCode(redirect.get(url));
+			}
+			else{
+				auis.setRedirectStatusCode(0);
+			}
+			
+			auis.setAverageTimeInMicro(avg.get(url));
+			auis.setDate("2016-01-29");
+			auisr.saveAndFlush(auis);	
+		}
+		
+		
+		
 		return  System.currentTimeMillis()-startTime;
 	}
 	

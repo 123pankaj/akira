@@ -19,3 +19,9 @@ CREATE TABLE AUI_CURRENT (id INT UNSIGNED NOT NULL AUTO_INCREMENT, time TIMESTAM
  KEY fk_id (id));	 
  
 CREATE TABLE akira.AUI_SUMMARY (sid INT UNSIGNED NOT NULL AUTO_INCREMENT, LogDate varchar(12) , URLRequested VARCHAR(255) ,SuccessStatusCode int,RedirectStatusCode int,FailureStatusCode int, AverageTimeInMicro INT UNSIGNED, KEY fk_id (sid));	 
+
+
+create view SuccessCount as SELECT distinct URLRequested as url,count(statusCode) as num  FROM akira.aui_current where statusCode like '2__' and date(time)='2016-01-29' group by URLRequested  ;
+create view RedirectCount as SELECT distinct URLRequested  as url,count(statusCode) as num  FROM akira.aui_current where statusCode like '3__' and date(time)='2016-01-29'  group by URLRequested;
+create view FailureCount as SELECT distinct URLRequested  as url,count(statusCode) as num FROM akira.aui_current where statusCode like '4__' and date(time)='2016-01-29'  or statusCode like '5__' group by URLRequested;
+create view  averagecount as SELECT distinct URLRequested  as url ,avg(TimeInMicro) as num FROM akira.aui_current  where date(time)='2016-01-29' group by URLRequested;

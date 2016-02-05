@@ -8,9 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+
 import com.akira.in.model.AuiCurrent;
 import com.akira.in.model.User;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import java.lang.Integer;
@@ -43,4 +45,20 @@ public interface AuiCurrentRepository extends JpaRepository<AuiCurrent, Integer>
 	 @Query(nativeQuery = true, value ="SELECT count(1) FROM akira.AUI_CURRENT where time between ?#{[0]} and ?#{[1]}")
 	 int totalLogsBetween(String d0,String d1);
 
+	 
+	 @Query(nativeQuery = true, value ="select url,num from redirectcount")
+	 List<Object[]> redirect();
+	 
+	 @Query(nativeQuery = true, value ="select url,num from successcount")
+	 List<Object[]>  success();
+	 
+	 @Query(nativeQuery = true, value ="select url,num from failurecount")
+	 List<Object[]>  failure();
+	 
+	 @Query(nativeQuery = true, value ="select url,num from averagecount")
+	 List<Object[]> average();	 
+	 
+	 
+
+	 
 }
