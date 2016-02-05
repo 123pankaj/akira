@@ -4,13 +4,16 @@
     <canvas tc-chartjs-bar chart-options="options" chart-data="data" auto-legend></canvas>
 
 </div>  
-<div class="col-md-2">
-<form role="form">
-		<div class="form-group">
-			<input class="form-control" id="searchinput" type="search" placeholder="Search..." />
+<div >
+<form role="form" class="pull-right col-md-3">
+		<div>
+			<input class="form-control" ng-model="searchurl" placeholder="Search..." />
+		
 		</div>
-		<div id="searchlist" class="list-group pre-scrollable">
-			<a ng-repeat="item in distinctUrl" class="list-group-item" ng-click="loadUrlData(item)">{{item}}</a>
+		<div class="pre-scrollable">
+		<table id="searchlist" class="table table-hover ">
+			<tr ng-repeat="item in distinctUrl|filter:searchurl"  ng-click="loadUrlData(item)"><td>{{item}}</td></tr>
+</table>
 </div>
 	</form>
 </div>
