@@ -12,26 +12,26 @@ $scope.type="status";
 			      datasets: [
 			        {
 			          label: 'Number of Success',
-			          fillColor: 'rgba(220,220,220,0.5)',
-			          strokeColor: 'rgba(220,220,220,0.8)',
-			          highlightFill: 'rgba(220,220,220,0.75)',
-			          highlightStroke: 'rgba(220,220,220,1)',
+			          fillColor: 'rgba(200,255,200,0.5)',
+			          strokeColor: 'rgba(60,130,60,1)',
+			          highlightFill: 'rgba(220,220,220,0.5)',
+			          highlightStroke: 'rgba(60,130,60,1)',
 			          data: resultJson.numberOfSuccess,
 			        },
 			        {
 			          label: 'Number of Failure',
-			          fillColor: 'rgba(151,187,205,0.5)',
-			          strokeColor: 'rgba(151,187,205,0.8)',
-			          highlightFill: 'rgba(151,187,205,0.75)',
-			          highlightStroke: 'rgba(151,187,205,1)',
+			          fillColor: 'rgba(255,200,200,0.5)',
+			          strokeColor: 'rgba(130,60,60,1)',
+			          highlightFill: 'rgba(255,200,200,0.5)',
+			          highlightStroke: 'rgba(130,60,60,1)',
 			          data:resultJson.numberOfFailure,
 			        },
 			        {
 				          label: 'Number of  Redirects',
-				          fillColor: 'rgba(151,187,205,0.5)',
-				          strokeColor: 'rgba(151,187,205,0.8)',
-				          highlightFill: 'rgba(151,187,205,0.75)',
-				          highlightStroke: 'rgba(151,187,205,1)',
+				          fillColor: 'rgba(200,200,255,0.5)',
+				          strokeColor: 'rgba(60,60,130,1)',
+				          highlightFill: 'rgba(200,200,255,0.5)',
+				          highlightStroke: 'rgba(60,60,130,1)',
 				          data:resultJson.numberOfRedirect,
 				        }
 				 ]
@@ -45,11 +45,11 @@ $scope.type="status";
 		      labels: resultJson.dates,
 		      datasets: [
 		        {
-		          label: 'Response time',
-		          fillColor: 'rgba(220,220,220,0.5)',
-		          strokeColor: 'rgba(220,220,220,0.8)',
-		          highlightFill: 'rgba(220,220,220,0.75)',
-		          highlightStroke: 'rgba(220,220,220,1)',
+		            label: 'Average response time in microsecond',
+			          fillColor: 'rgba(200,200,200,0.5)',
+			          strokeColor: 'rgba(130,130,130,1)',
+			          highlightFill: 'rgba(200,200,200,0.5)',
+			          highlightStroke: 'rgba(130,130,130,1)',
 		          data: resultJson.numberOfResponseTime,
 		        },
 		       ]
