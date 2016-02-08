@@ -30,7 +30,7 @@
 				  urlService.getAUILog($scope.date,$scope.pageNumber,$scope.pageSize,$scope.sortByOrder,$scope.sortByAttribute).then(function(resultJson) {
 				  $scope.LogArray = resultJson.list;
 				  $scope.totalPage = resultJson.pages;
-					
+				  $scope.resetPaginator();
 					
 				});	  
 				  
@@ -81,9 +81,17 @@
 			};
 			$scope.loadPage = function(id) {
 				$scope.pageNumber = id-1;
-				//alert(id);
 				$scope.getAndSetAUILogs();
-				if($scope.pageNumber>3){
+			
+				
+		
+			};	
+			
+			
+			
+			$scope.resetPaginator=function(){
+				
+				 if($scope.pageNumber>3&&$scope.pageNumber<$scope.totalPage-4){
 					$scope.pn[0]=$scope.pageNumber-2;
 					$scope.pn[1]=$scope.pageNumber-1;
 					$scope.pn[2]=$scope.pageNumber-0;
@@ -93,17 +101,33 @@
 					$scope.pn[6]=$scope.pageNumber+4;
 				}
 				
-				if($scope.pageNumber<=3){
+				else if($scope.pageNumber<=3){
 					$scope.pn=[1,2,3,4,5,6,7];
 					
 				}	
 				
+				else{
+					$scope.pn[0]=$scope.totalPage-6;
+					$scope.pn[1]=$scope.totalPage-5;
+					$scope.pn[2]=$scope.totalPage-4;
+					$scope.pn[3]=$scope.totalPage-3;
+					$scope.pn[4]=$scope.totalPage-2;
+					$scope.pn[5]=$scope.totalPage-1;
+					$scope.pn[6]=$scope.totalPage;
 				
+				}
+			};
+			
+			$scope.pageExists=function(id){
+				if(id=='<'&&$scope.pageNumber==0)return false;
+				if(id=='>'&&$scope.pageNumber>=$scope.totalPage-1)return false;
+				else if(id>$scope.totalPage)return false;
+				return true;
 				
-				
-				
-				
-			};	
+			}
+			
+			
+			
 			$scope.getAndSetAUILogs();
 			
 				

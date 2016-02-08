@@ -64,8 +64,10 @@ public class SummaryService {
 		return list;
 	}
 
-	public int getTotalPages(String d, int pSize) {
-		return (int) Math.ceil((auisr.findByDate(d).size() / (float) pSize));
+	public long getTotalPages(String d, int pSize) {
+		
+		
+		return Math.round(Math.ceil(auisr.findByDate(d).size()/(double)pSize));
 
 	}
 	

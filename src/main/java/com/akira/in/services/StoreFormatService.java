@@ -107,7 +107,7 @@ public class StoreFormatService {
 	}
 	
 	
-	public int getTotalPages(String d, int pSize) {
+	public long getTotalPages(String d, int pSize) {
 
 		DateFormat dateformat=new SimpleDateFormat("yyyy-mm-dd");
 		Date dayEnd=new Date();
@@ -120,7 +120,7 @@ public class StoreFormatService {
 			e.printStackTrace();
 		}
 		
-		return auiRepo.totalLogsBetween(d,dateformat.format(dayEnd));
+		return Math.round(Math.ceil(auiRepo.totalLogsBetween(d,dateformat.format(dayEnd))/(double)pSize));
 	}
 	
 

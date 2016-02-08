@@ -39,33 +39,27 @@
 </div>
 
 <div style="width: 50%; margin-left: auto; margin-right: auto;">
-	<button class="btn-primary btn-lg" style="float: left"
-		ng-click="loadPreLogs()">Previous</button>
-	<button class="btn-primary btn-lg" style="float: right"
-		ng-click="loadNextLogs()">Next</button>
-</div>
+	
+
+
 <div>
 
 	<ul class="pagination pagination-lg">
- 		<li><a ng-click="gotoPage(-6);"><<</a></li>
-		<li><a ng-click="gotoPage(-6);"><</a></li>
-		<li><a ng-show="visiblePageNumber(-6)" ng-click="gotoPage(-6);">{{pageNumber-5}}</a></li>
-		<li><a ng-show="visiblePageNumber(-5)" ng-click="gotoPage(-5);">{{pageNumber-4}}</a></li>
-		<li><a ng-show="visiblePageNumber(-4)" ng-click="gotoPage(-4);">{{pageNumber-3}}</a></li>
-		<li><a ng-show="visiblePageNumber(-3)" ng-click="gotoPage(-3);">{{pageNumber-2}}</a></li>
-		<li><a ng-show="visiblePageNumber(-2)" ng-click="gotoPage(-2);">{{pageNumber-1}}</a></li>
-		<li><a ng-show="visiblePageNumber(-1)" ng-click="gotoPage(-1);">{{pageNumber}}</a></li>
-		<li><a ng-show="visiblePageNumber(0)" class="active">{{pageNumber+1}}</a></li>
-		<li><a ng-show="visiblePageNumber(1)" ng-click="gotoPage(1);">{{pageNumber+2}}</a></li>
-		<li><a ng-show="visiblePageNumber(2)" ng-click="gotoPage(2);">{{pageNumber+3}}</a></li>
-		<li><a ng-show="visiblePageNumber(3)" ng-click="gotoPage(3);">{{pageNumber+4}}</a></li>
-		<li><a ng-show="visiblePageNumber(4)" ng-click="gotoPage(4);">{{pageNumber+5}}</a></li>
-		<li><a ng-show="visiblePageNumber(5)" ng-click="gotoPage(5);">{{pageNumber+6}}</a></li>
-		<li><a ng-show="visiblePageNumber(6)" ng-click="gotoPage(6);">{{pageNumber+7}}</a></li>
-		<li><a ng-click="gotoPage(-6);">></a></li>
-		<li><a ng-click="gotoPage(-6);">>></a></li>
+ 		
+		<li ng-show="pageExists('<')"><a ng-click="loadPreLogs()"><</a></li>
+		<li ng-show="pageExists(pn[0])"><a ng-click="loadPage(pn[0])">{{pn[0]}}</a></li>
+		<li ng-show="pageExists(pn[1])"><a ng-click="loadPage(pn[1])">{{pn[1]}}</a></li>
+		<li ng-show="pageExists(pn[2])"><a ng-click="loadPage(pn[2])">{{pn[2]}}</a></li>
+		<li ng-show="pageExists(pn[3])"><a ng-click="loadPage(pn[3])">{{pn[3]}}</a></li>
+		<li ng-show="pageExists(pn[4])"><a ng-click="loadPage(pn[4])">{{pn[4]}}</a></li>
+		<li ng-show="pageExists(pn[5])"><a ng-click="loadPage(pn[5])">{{pn[5]}}</a></li>
+		<li ng-show="pageExists(pn[6])"><a ng-click="loadPage(pn[6])">{{pn[6]}}</a></li>
+		<li ng-show="pageExists('>')"><a ng-click="loadNextLogs()">></a></li>
+		
 	
 	</ul>
+</div>
+
 </div>
 
 

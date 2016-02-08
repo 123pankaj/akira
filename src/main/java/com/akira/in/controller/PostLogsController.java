@@ -66,7 +66,7 @@ public class PostLogsController {
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		List<AuiCurrent> auic = formatService.getAUILog(date,pNumber, pSize,order,sortBy);
-		int pageSize=formatService.getTotalPages(date, pSize);
+		long pageSize=formatService.getTotalPages(date, pSize);
 		Logs l=new Logs(pageSize,auic);
 		System.out.println(pageSize);	
 		return l;
@@ -83,7 +83,7 @@ public class PostLogsController {
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		List<AuiSummary> auis = summaryservice.getSummaryLog(date,pNumber, pSize,order,sortBy);
-		int pageSize=summaryservice.getTotalPages(date, pSize);
+		long pageSize=summaryservice.getTotalPages(date, pSize);
 		Logs l=new Logs(pageSize,auis);
 		System.out.println(pageSize);	
 		return l;

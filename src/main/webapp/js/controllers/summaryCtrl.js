@@ -27,8 +27,8 @@ akira.controller("summaryCtrl",[ "$scope", "$log", "urlService","$location",
 				  $scope.LogArray = resultJson.list;
 				  $scope.totalPage = resultJson.pages;
 					
-					
-					  console.log($scope.totalPage);
+				  $scope.resetPaginator();
+				
 				});	  
 				  
 			};
@@ -78,30 +78,49 @@ akira.controller("summaryCtrl",[ "$scope", "$log", "urlService","$location",
 				$scope.pageNumber = $scope.pageNumber - 1;
 				$scope.getAndSetSummaryLogs();
 			};
-			$scope.gotoPage = function(id) {
-				$scope.pageNumber = $scope.pageNumber + id;
+			$scope.loadPage = function(id) {
+				$scope.pageNumber = id-1;
 				$scope.getAndSetSummaryLogs();
+				
+		
 			};	
-			/*
-			$scope.visiblePageNumber= function(id) {
-				if($scope.pageNumber>=3&&$scope.pageNumber<=$scope.totalPage-3)
-					{
-					if(id<=4&&id>=-2)
-						return true;
-					return false;
-					}
-				else if($scope.pageNumber+id>=0&&$scope.pageNumber+id<$scope.totalPage){
-					return true;
-				}
-				return false;
+			
+			$scope.resetPaginator=function(){
 				
-				if($scope.pageNumber<3){
-					if(id>=0&&id<=$scope.totalPage)return true;
-					return false;
+				 if($scope.pageNumber>3&&$scope.pageNumber<$scope.totalPage-4){
+					$scope.pn[0]=$scope.pageNumber-2;
+					$scope.pn[1]=$scope.pageNumber-1;
+					$scope.pn[2]=$scope.pageNumber-0;
+					$scope.pn[3]=$scope.pageNumber+1;
+					$scope.pn[4]=$scope.pageNumber+2;
+					$scope.pn[5]=$scope.pageNumber+3;
+					$scope.pn[6]=$scope.pageNumber+4;
 				}
 				
+				else if($scope.pageNumber<=3){
+					$scope.pn=[1,2,3,4,5,6,7];
+					
+				}	
 				
-			};	*/
+				else{
+					$scope.pn[0]=$scope.totalPage-6;
+					$scope.pn[1]=$scope.totalPage-5;
+					$scope.pn[2]=$scope.totalPage-4;
+					$scope.pn[3]=$scope.totalPage-3;
+					$scope.pn[4]=$scope.totalPage-2;
+					$scope.pn[5]=$scope.totalPage-1;
+					$scope.pn[6]=$scope.totalPage;
+				
+				}
+			};
+			
+			$scope.pageExists=function(id){
+				if(id=='<'&&$scope.pageNumber==0)return false;
+				if(id=='>'&&$scope.pageNumber>=$scope.totalPage-1)return false;
+				else if(id>$scope.totalPage)return false;
+				return true;
+				
+			}
 			
 			
 
