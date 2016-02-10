@@ -3,8 +3,7 @@ var akira = angular.module('akira', ['tc.chartjs','ngRoute']);
 	akira.config(['$routeProvider', function($routeProvider) {
 	    $routeProvider
 	    .when('/', {
-	        templateUrl: 'ngviews/Verify.jsp'
-	      
+	        templateUrl: 'ngviews/Verify.jsp'	      
 	      }).when('/logs', {
 	        templateUrl: 'ngviews/AllLogs.jsp',
 	        controller:'logCtrl'
@@ -20,6 +19,12 @@ var akira = angular.module('akira', ['tc.chartjs','ngRoute']);
 		    	  controller:'guictrl'
 	    	
 		      }).otherwise({
+		   }).when('/autoScale', {
+		        templateUrl: 'ngviews/autoScale.jsp',
+		        controller:'awsCtrl'
+		   }).when('/autoScale/groupDetail', {
+		        templateUrl: 'ngviews/ScaleGroupDetail.jsp',
+		   }).otherwise({
 		          redirectTo: '/'
 		      });
 	  }]);

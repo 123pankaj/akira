@@ -1,21 +1,14 @@
 package com.akira.in.repository;
 
-import java.util.Set;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-
 import com.akira.in.model.AuiCurrent;
-import com.akira.in.model.User;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
-import java.lang.Integer;
 
 public interface AuiCurrentRepository extends JpaRepository<AuiCurrent, Integer>{
 	
@@ -33,7 +26,7 @@ public interface AuiCurrentRepository extends JpaRepository<AuiCurrent, Integer>
 	 int numberOfRedirect(String s,String date);
 	 
 	 
-	 @Query(nativeQuery = true, value ="Select Count(1) from AUI_CURRENT where URLRequested = ?#{[0]} AND  statusCode Like '4__' OR  statusCode Like '5__'    AND date(time)=?#{[1]}")
+	 @Query(nativeQuery = true, value ="Select Count(1) from AUI_CURRENT where URLRequested = ?#{[0]} AND  ( statusCode Like '4__' OR  statusCode Like '5__' )   AND date(time)=?#{[1]}")
 	 int numberOfFailure(String s,String date);	 
 	 
 	 @Query(nativeQuery = true, value ="SELECT avg(TimeInMicro) FROM akira.AUI_CURRENT where URLRequested = ?#{[0]}  AND date(time)=?#{[1]}")

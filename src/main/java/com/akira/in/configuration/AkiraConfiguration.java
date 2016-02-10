@@ -43,11 +43,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableScheduling
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.akira.in.controller","com.akira.in.services", "com.akira.in.model","com.akira.in.repository","com.akira.Schedules"})
+@ComponentScan(basePackages = { "com.akira.in.controller",
+		"com.akira.in.services", "com.akira.in.model",
+		"com.akira.in.repository", "com.akira.Schedules" })
 @EnableJpaRepositories("com.akira.in.repository")
 @EnableTransactionManagement
 public class AkiraConfiguration extends WebMvcConfigurerAdapter {
-	
+
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -76,7 +78,7 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/")
-				.setCachePeriod(0);//31556926);
+				.setCachePeriod(0);// 31556926);
 		registry.addResourceHandler("/images/**")
 				.addResourceLocations("/images/").setCachePeriod(31556926);
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/")
@@ -100,7 +102,7 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 		LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
 		lef.setDataSource(dataSource);
 		lef.setJpaVendorAdapter(jpaVendorAdapter);
-		lef.setPackagesToScan(new String[] {"com.akira.in.model"});
+		lef.setPackagesToScan(new String[] { "com.akira.in.model" });
 		lef.setPersistenceUnitName("akira");
 		return lef;
 	}
@@ -126,15 +128,11 @@ public class AkiraConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public PlatformTransactionManager txManager() {
-		JpaTransactionManager tm = 
-	            new JpaTransactionManager();
-	            tm.setEntityManagerFactory(entityManagerFactory(getDataSource(), jpaVendorAdapter()).getObject());
-	            tm.setDataSource(getDataSource());
-	        return tm;
+		JpaTransactionManager tm = new JpaTransactionManager();
+		tm.setEntityManagerFactory(entityManagerFactory(getDataSource(),
+				jpaVendorAdapter()).getObject());
+		tm.setDataSource(getDataSource());
+		return tm;
 	}
 
-	
-	
-	
-	
 }

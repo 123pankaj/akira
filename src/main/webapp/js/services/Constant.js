@@ -6,9 +6,7 @@ akira.constant("Constant", {
 		getGuiLogUrlbyStatus : 'http://' + remoteIp + '/logs/status/get',
 		getGuiLogUrlbyResponsetime : 'http://' + remoteIp + '/logs/ResponseTime/get',
 		getDistinctUrl : 'http://' + remoteIp + '/logs/distinctUrl',
-	
-
-		
+		autoScaleGroupNameUrl : 'http://' + remoteIp + '/aws/autoscalegroup'
 	},
 	logMessages : {
 		requestFetchError : "Error in fetching Request {0}.",

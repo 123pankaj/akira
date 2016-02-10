@@ -12,6 +12,7 @@
 <link href="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.css" rel="stylesheet"> 
     
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css"/>
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/angular-chart.min.css"/>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"> </script> 
@@ -32,7 +33,6 @@
 
 <div>
 
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid" >
   
@@ -40,7 +40,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#Verify" ng-click="showDiv('verify')">Test<span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="#/">Test <span class="sr-only">(current)</span></a></li>
        
         <li class="dropdown">
@@ -56,7 +55,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">AWS <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#/logs">AutoScaling Group</a></li>
+            <li><a href="#/autoScale">AutoScaling Group</a></li>
             <li role="separator" class="divider"></li>
             <li><a>More to come</a></li>
           </ul>
@@ -74,6 +73,7 @@
 <script type="text/javascript" src="js/controllers/guictrl.js"></script>
 <script type="text/javascript" src="js/controllers/summaryCtrl.js"></script>
 <script type="text/javascript" src="js/services/Constant.js"></script>
+<script type="text/javascript" src="js/controllers/awsCtrl.js"></script>
 <script type="text/javascript" src="js/services/urlService.js"></script>
 
 </body>

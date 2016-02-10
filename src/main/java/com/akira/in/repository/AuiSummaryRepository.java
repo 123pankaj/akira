@@ -20,7 +20,7 @@ public interface AuiSummaryRepository extends JpaRepository<AuiSummary, Integer>
 	 List<String>getDistinctUrl(String startDate,String endDate);
 		 
 	 
-	 @Query(nativeQuery = true, value ="SELECT SuccessStatusCode FROM akira.aui_summary where URLRequested=?#{[0]} and LogDate between ?#{[1]} and ?#{[2]}")
+	 @Query(nativeQuery = true, value ="SELECT SuccessStatusCode FROM akira.AUI_SUMMARY where URLRequested=?#{[0]} and LogDate between ?#{[1]} and ?#{[2]}")
 	 List<Integer>findSuccessListByUrlBetweenDates(String url,String startDate,String endDate);
 	
 	 @Query(nativeQuery = true, value ="SELECT AverageTimeInMicro FROM akira.aui_summary where URLRequested=?#{[0]} and LogDate between ?#{[1]} and ?#{[2]}")

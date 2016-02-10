@@ -9,16 +9,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
-import org.joda.time.Days;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import com.akira.in.model.AuiCurrent;
-import com.akira.in.model.AuiSummary;
 import com.akira.in.repository.AuiCurrentRepository;
 import com.akira.in.repository.AuiSummaryRepository;
 import com.akira.in.repository.ProcessFormats;

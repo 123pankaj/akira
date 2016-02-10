@@ -15,7 +15,7 @@ akira.service("urlService",
 					};
 
 					function getAUILog(date, pNum, pSize, sOrder, sAttribute) {
-						var request=$http.get(staticUrls.getAuiLogUrl, {
+						var request = $http.get(staticUrls.getAuiLogUrl, {
 							params : {
 								pN : pNum,
 								pS : pSize,
@@ -24,36 +24,67 @@ akira.service("urlService",
 								date : date
 							}
 						});
-						
-						console.log("-"+staticUrls.getAuiLogUrl+" "+date+" "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
 						return (request.then(handleSuccess, handleError));
 					}
 
 					function getGUILogbyStatus(url) {
-						var request=$http.get(staticUrls.getGuiLogUrlbyStatus, {
-							params : {
-								url : url,
-								
-							}
-						});
-						
-					//	console.log("-"+staticUrls.getGuiLogUrl+" "+date+" "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
+						var request = $http.get(
+								staticUrls.getGuiLogUrlbyStatus, {
+									params : {
+										url : url,
+
+									}
+								});
+
+						// console.log("-"+staticUrls.getGuiLogUrl+" "+date+"
+						// "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
 						return (request.then(handleSuccess, handleError));
 					}
 					function getGUILogbyResponsetime(url) {
-						var request=$http.get(staticUrls.getGuiLogUrlbyResponsetime, {
-							params : {
-								url : url,
-								
-							}
-						});
-						
-					//	console.log("-"+staticUrls.getGuiLogUrl+" "+date+" "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
+						var request = $http.get(
+								staticUrls.getGuiLogUrlbyResponsetime, {
+									params : {
+										url : url,
+
+									}
+								});
+
+						// console.log("-"+staticUrls.getGuiLogUrl+" "+date+"
+						// "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
 						return (request.then(handleSuccess, handleError));
 					}
-					
-					
-					
+
+					function getSummaryLog(date, pNum, pSize, sOrder,
+							sAttribute) {
+						var request = $http.get(staticUrls.getSummaryLogUrl, {
+							params : {
+								pN : pNum,
+								pS : pSize,
+								sB : sAttribute,
+								or : sOrder,
+								date : date
+							}
+						});
+
+						console.log("-" + staticUrls.getAuiLogUrl + " " + date
+								+ " " + pNum + " " + pSize + " " + sOrder + " "
+								+ sAttribute);
+						return (request.then(handleSuccess, handleError));
+					}
+
+					function getDistinctUrl() {
+						var request = $http.get(staticUrls.getDistinctUrl);
+
+						return (request.then(handleSuccess, handleError));
+					}
+
+					// Aws info call
+					function getAutoScaleGroupNames() {
+						var request = $http.get(
+								staticUrls.autoScaleGroupNameUrl, {});
+						return (request.then(handleSuccess, handleError));
+					}
+
 					function handleError(response) {
 						if (!angular.isObject(response.data)
 								|| !response.data.message) {
@@ -66,33 +97,12 @@ akira.service("urlService",
 						return (response.data);
 					}
 
-					function getSummaryLog(date, pNum, pSize, sOrder, sAttribute) {
-						var request=$http.get(staticUrls.getSummaryLogUrl, {
-							params : {
-								pN : pNum,
-								pS : pSize,
-								sB : sAttribute,
-								or : sOrder,
-								date : date
-							}
-						});
-						
-						console.log("-"+staticUrls.getAuiLogUrl+" "+date+" "+pNum+" "+pSize+" "+sOrder+" "+sAttribute);
-						return (request.then(handleSuccess, handleError));
-					}	
-
-					
-					function getDistinctUrl() {
-						var request=$http.get(staticUrls.getDistinctUrl);
-						
-						return (request.then(handleSuccess, handleError));
-					}	
 					return ({
 						getAUILog : getAUILog,
 						getSummaryLog : getSummaryLog,
-						getGUILogbyStatus: getGUILogbyStatus,
-						getGUILogbyResponsetime: getGUILogbyResponsetime,
-						 getDistinctUrl: getDistinctUrl,
+						getGUILogbyStatus : getGUILogbyStatus,
+						getGUILogbyResponsetime : getGUILogbyResponsetime,
+						getDistinctUrl : getDistinctUrl,
+						getAutoScaleGroupNames : getAutoScaleGroupNames,
 					});
-
 				} ]);
